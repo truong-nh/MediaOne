@@ -44,7 +44,13 @@ public class MediaOne {
     }
 
     public int getIdEmployee() {
-        return idEmployee;
+        int max=0;
+        for(Employee employee :this.getListEmployee()){
+           if(employee.getId()>max){
+           max=employee.getId();
+           }
+        }
+        return max;
     }
 
     public void setIdEmployee(int idEmployee) {

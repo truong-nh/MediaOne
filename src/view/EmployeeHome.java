@@ -4,6 +4,8 @@
  */
 package view;
 
+import view.bookform.BookFormEdit;
+import view.bookform.BookForm;
 import view.clock.ClockThread;
 import Controller.ProductController;
 import Product.Book;
@@ -437,8 +439,20 @@ public class EmployeeHome extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        productController = new ProductController(employee);
+        if (codeJTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
+        }
+        else{
+          if (productController.getBookByCode(codeJTextField.getText())!= null ){
+              JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
+          }
+        else{
         new BookForm(employee).setVisible(true);
-       this.setVisible(false);
+        this.setVisible(false);
+        }
+        
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void getAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButtonActionPerformed
@@ -520,10 +534,14 @@ public class EmployeeHome extends javax.swing.JFrame {
         defaultTableModel.addColumn("Publisher");
         defaultTableModel.addColumn("Author");
 
-        
-        Book book= productController.getBookByCode(codeJTextField.getText());
+        try {
+            Book book= productController.getBookByCode(codeJTextField.getText());
         defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
             book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nhập lại mã sản phẩm: ");
+        }
+        
         
     }//GEN-LAST:event_findJButtonActionPerformed
 

@@ -31,7 +31,7 @@ public class test {
 //       productController.addBook("bay vien ngoc rong", "BVNRR", "15","21", "30", "40", "50", "60", "60");
          
 //         productController.updateBook("test", "10", "10", "10", "5", "5", "5", "5", "5");
-      
-        
+  //       employeeController.addEmployee("3000", "Hùng", "123456789", "2002", "hunggv", "123456", "employee");
+   //        employeeController.updateEmployee("truongnh", "200202");
     }
 }

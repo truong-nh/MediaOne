@@ -7,6 +7,7 @@ package Controller;
 import database.DB;
 import java.util.List;
 import mediaone.MediaOne;
+import person.Account;
 import person.Employee;
 
 /**
@@ -46,6 +47,10 @@ public class EmployeeController {
         return null;        
     }
     
+    public int getIdEmployee(){
+      return  mediaOne.getIdEmployee();
+    }
+    
     public List<Employee> getListEmployee(){
        return mediaOne.getListEmployee();
     }
@@ -59,65 +64,30 @@ public class EmployeeController {
         return null;   
     }
     
-    
+    public void addEmployee(String salary, String name, String phone, String born ,String userName,String passWord, String role  ){
+           Employee newEmployee= new Employee();
+           Account  account = new Account();
+           
+           account.setPassword(passWord);
+           account.setRole(role);
+           account.setUserName(userName);
+           newEmployee.setAccount(account);
+           
+           newEmployee.setId(this.getIdEmployee()+1);
+           newEmployee.setSalary(Integer.parseInt(salary));
+           newEmployee.setName(name);
+           newEmployee.setPhone(phone);
+           newEmployee.setBorn(Integer.parseInt(born));
+           
+           mediaOne.getListEmployee().add(newEmployee);
+           db.addEmployee(newEmployee);
+    }
      
-//    public List<Book> getListBook(){
-//        return mediaOne.getListBook();
-//    }
-//    
-//    public void addBook(String name, String code , String purcharPrice , String salePrice ,
-//            String remaining,String productPlacement, String category ,String publisher, String author){
-//        Book book = new Book();
-//        
-//        book.setId( String.valueOf(this.getIdbook()+1));
-//        book.setCode(code);
-//        book.setName(name);
-//        book.setPurchasePrice(Long.parseLong(purcharPrice));
-//        book.setSalePrice(Long.parseLong(salePrice));
-//        book.setRemaining(Integer.parseInt(remaining));
-//        book.setUpdateDate(new Date());
-//        book.setAddDate(new Date());
-//        book.setUpdater(employee);
-//        book.setProductPlacemernt(productPlacement);
-//        book.setCategory(category);
-//        book.setPublisher(publisher);
-//        book.setAuthor(author);
-//        
-//        
-//        mediaOne.getListBook().add(book);
-//        db.addBook(book);
-//    }
-//    
-//    public int getIdbook(){
-//        return mediaOne.getIdBook();
-//    }
-//    
-//    public Book getBookByCode(String code ){
-//       for(Book book : this.getListBook()){
-//          if(book.getCode().equals(code) ){
-//          return book;
-//          }
-//          else{
-//          return null;
-//          }
-//       }
-//        return null;
-//    }
-//    
-//    public void updateBook( String code , String purcharPrice , String salePrice ,
-//            String remaining,String productPlacement, String category ,String publisher, String author){
-//        Book book= this.getBookByCode(code);
-//        book.setPurchasePrice(Long.parseLong(purcharPrice));
-//        book.setSalePrice(Long.parseLong(salePrice));
-//        book.setRemaining(Integer.parseInt(remaining));
-//        book.setUpdateDate(new Date());
-//        book.setUpdater(employee);
-//        book.setProductPlacemernt(productPlacement);
-//        book.setCategory(category);
-//        book.setPublisher(publisher);
-//        book.setAuthor(author);
-//        db.updateBook(code, book);
-//    } 
+    public void updateEmployee(String userName, String salary){
+       employee = this.getEmployeeByUserName(userName);
+       employee.setSalary(Integer.parseInt(salary));
+       db.updateEmployee(userName, employee);
+    }
 
     public EmployeeController() {
     }

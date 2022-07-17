@@ -286,6 +286,9 @@ public class DB {
         }
     }
     
+    
+    
+    // employee
     public List<Account> getListAccounts(){
     List<Account> accounts = new ArrayList<>();
         Connection connection = JDBCConnection.getJDBCConnection();
@@ -478,6 +481,81 @@ public class DB {
         return null;        
     }
     
+    public void addEmployee(Employee employee ){
+          Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        String sql = "INSERT INTO employee (ID, Salary, Name, phone, born, UserName, PassWord, Role) "
+                + "VALUE(?,?,?,?,?,?,?,?)";
+ 
+        try {
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1,employee.getId());
+            pst.setString(2, String.valueOf(employee.getSalary()) );
+            pst.setString(3,employee.getName());
+            pst.setString(4,employee.getPhone());
+            pst.setInt(5, employee.getBorn());
+            pst.setString(6, employee.getAccount().getUserName());
+            pst.setString(7, employee.getAccount().getPassword());
+            pst.setString(8, employee.getAccount().getRole());
+            int rs = pst.executeUpdate();
+            System.out.println(rs);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } 
+    }
     
+    public void updateEmployee(String userName, Employee employee){
+        Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        String sql = "UPDATE employee set salary = ?, Name = ?, born = ?, phone = ?,userName = ?, password = ?, role = ? WHERE userName  = ? ";
+ 
+        try {
+             pst = connection.prepareStatement(sql);
+             pst.setString(1, String.valueOf(employee.getSalary()));
+             pst.setString(2, employee.getName());
+             pst.setInt(3,employee.getBorn());
+             pst.setString(4, employee.getPhone());
+             pst.setString(5, employee.getAccount().getUserName());
+             pst.setString(6, employee.getAccount().getPassword());
+             pst.setString(7, employee.getAccount().getRole());
+             
+             pst.setString(8,userName);
+            int rs = pst.executeUpdate();
+            System.out.println(rs);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
     
 }

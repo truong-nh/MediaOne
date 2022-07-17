@@ -30,6 +30,6 @@ public class test {
        Book  book = new Book("category", "publisher", "author", "1", "code1", "name1", 2003, 0, 0, date, date, employee, "productPlacement");
       //db.addBook(book);
      // db.updateBook("125125",book);
-        System.out.println(db.getEmployeeByUserName("vunn").getName());
+      // db.addEmployee(employee);
     } 
 }

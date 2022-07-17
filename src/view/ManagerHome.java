@@ -4,6 +4,9 @@
  */
 package view;
 
+import view.employeeform.EmployeeForm;
+import view.bookform.BookFormEdit;
+import view.bookform.BookForm;
 import Controller.EmployeeController;
 import view.clock.ClockThread;
 import Controller.ProductController;
@@ -13,15 +16,16 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import person.Employee;
+import view.employeeform.EmployeeFormEdit;
 
 /**
  *
  * @author Admin
  */
 public class ManagerHome extends javax.swing.JFrame {
-    ProductController productController;
     Employee employee;
     EmployeeController employeeController;
+    ProductController productController;
     /**
      * Creates new form EmployeeHome
      */
@@ -30,7 +34,6 @@ public class ManagerHome extends javax.swing.JFrame {
         
     }
     public ManagerHome(Employee employee)  {
-        productController= new ProductController(employee);
         this.employee=employee;
         initComponents();
         jLabel6.setText("UserName:"+employee.getAccount().getUserName());
@@ -64,7 +67,7 @@ public class ManagerHome extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         employeeJPanel = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        codeJTextField1 = new javax.swing.JTextField();
+        userNameSearchJTextField1 = new javax.swing.JTextField();
         findJButton1 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
@@ -223,9 +226,9 @@ public class ManagerHome extends javax.swing.JFrame {
 
         jLabel8.setText("UserName :");
 
-        codeJTextField1.addActionListener(new java.awt.event.ActionListener() {
+        userNameSearchJTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codeJTextField1ActionPerformed(evt);
+                userNameSearchJTextField1ActionPerformed(evt);
             }
         });
 
@@ -237,6 +240,11 @@ public class ManagerHome extends javax.swing.JFrame {
         });
 
         jButton11.setText("Chỉnh sửa");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("Thêm mới");
         jButton12.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +281,7 @@ public class ManagerHome extends javax.swing.JFrame {
                     .addGroup(employeeJPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(codeJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userNameSearchJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(findJButton1)
                         .addGap(71, 71, 71)
@@ -290,7 +298,7 @@ public class ManagerHome extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(employeeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(codeJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userNameSearchJTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(findJButton1)
                     .addComponent(jButton11)
                     .addComponent(jButton12)
@@ -429,19 +437,14 @@ public class ManagerHome extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
+       
+        new EmployeeForm(employee).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void findJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findJButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_findJButton1ActionPerformed
-
-    private void codeJTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeJTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codeJTextField1ActionPerformed
-
-    private void findJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findJButtonActionPerformed
-        // TODO add your handling code here:
-        productController= new ProductController(employee);
+        employeeController = new EmployeeController(employee);
         DefaultTableModel defaultTableModel;
         defaultTableModel= new DefaultTableModel(){
             @Override
@@ -449,8 +452,44 @@ public class ManagerHome extends javax.swing.JFrame {
                 return false;
             }
         } ;
-        listBookTable.setModel(defaultTableModel);
+        listEmployeeJTable.setModel(defaultTableModel);
 
+        defaultTableModel.addColumn("ID");
+        defaultTableModel.addColumn("Name");
+        defaultTableModel.addColumn("Phone");
+        defaultTableModel.addColumn("Born");
+        defaultTableModel.addColumn("Salary");
+        defaultTableModel.addColumn("Role");
+        defaultTableModel.addColumn("UserName");
+        defaultTableModel.addColumn("PassWord");
+        
+        try {
+            employee = employeeController.getEmployeeByUserName(userNameSearchJTextField1.getText());
+            defaultTableModel.addRow(new Object[]{employee.getId(),employee.getName(),employee.getPhone(),employee.getBorn(),employee.getSalary(),employee.getAccount().getRole(),
+                employee.getAccount().getUserName(),employee.getAccount().getPassword()  });
+        
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nhap lai ma nhan vien");
+        }
+        
+    }//GEN-LAST:event_findJButton1ActionPerformed
+
+    private void userNameSearchJTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameSearchJTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userNameSearchJTextField1ActionPerformed
+
+    private void findJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findJButtonActionPerformed
+        // TODO add your handling code here:
+        productController= new ProductController(employee);
+        DefaultTableModel defaultTableModel;
+     defaultTableModel= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listBookTable.setModel(defaultTableModel);
+        
         defaultTableModel.addColumn("ID");
         defaultTableModel.addColumn("Code");
         defaultTableModel.addColumn("Name");
@@ -465,10 +504,13 @@ public class ManagerHome extends javax.swing.JFrame {
         defaultTableModel.addColumn("Publisher");
         defaultTableModel.addColumn("Author");
 
-        Book book= productController.getBookByCode(codeJTextField.getText());
+        try {
+            Book book= productController.getBookByCode(codeJTextField.getText());
         defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
             book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
-
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nhập lại mã sản phẩm: ");
+        }
     }//GEN-LAST:event_findJButtonActionPerformed
 
     private void codeJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeJTextFieldActionPerformed
@@ -480,28 +522,28 @@ public class ManagerHome extends javax.swing.JFrame {
 
         productController= new ProductController(employee);
         String code= codeJTextField.getText();
-
+        
         if ( productController.getBookByCode(code)!= null ){
-            new BookFormEdit(productController.getBookByCode(code),employee).setVisible(true);
-            this.setVisible(false);
+          new BookFormEdit(productController.getBookByCode(code),employee).setVisible(true);
+          this.setVisible(false);
         }
         else{
-            JOptionPane.showMessageDialog(null, "Mã sản phẩm chưa tồn tại");
+           JOptionPane.showMessageDialog(null, "Mã sản phẩm chưa tồn tại");
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void getAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButtonActionPerformed
         // TODO add your handling code here:
-        productController= new ProductController(employee);
+      productController= new ProductController(employee);
         DefaultTableModel defaultTableModel;
-        defaultTableModel= new DefaultTableModel(){
+     defaultTableModel= new DefaultTableModel(){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
-            }
-        } ;
-        listBookTable.setModel(defaultTableModel);
-
+            }         
+        } ; 
+     listBookTable.setModel(defaultTableModel);
+        
         defaultTableModel.addColumn("ID");
         defaultTableModel.addColumn("Code");
         defaultTableModel.addColumn("Name");
@@ -516,18 +558,46 @@ public class ManagerHome extends javax.swing.JFrame {
         defaultTableModel.addColumn("Publisher");
         defaultTableModel.addColumn("Author");
 
+        
         List<Book> books = productController.getListBook();
         for(Book book : books){
-            defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
-                book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
+        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
+            book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
         }
     }//GEN-LAST:event_getAllButtonActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        productController = new ProductController(employee);
+        if (codeJTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
+        }
+        else{
+          if (productController.getBookByCode(codeJTextField.getText())!= null ){
+              JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
+          }
+        else{
         new BookForm(employee).setVisible(true);
         this.setVisible(false);
+        }
+        
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        employeeController = new EmployeeController(employee);
+        String userName= userNameSearchJTextField1.getText();
+        
+        if ( employeeController.getEmployeeByUserName(userName)!= null ){
+         new EmployeeFormEdit(employeeController.getEmployeeByUserName(userName), employee).setVisible(true);
+        this.setVisible(false);
+        }
+        else{
+           JOptionPane.showMessageDialog(null, "Mã nhân viên chưa tồn tại");
+        }
+        
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -568,7 +638,6 @@ public class ManagerHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bookJPanel;
     private javax.swing.JTextField codeJTextField;
-    private javax.swing.JTextField codeJTextField1;
     private javax.swing.JPanel employeeJPanel;
     private javax.swing.JPanel financeJPanel;
     private javax.swing.JButton findJButton;
@@ -597,5 +666,6 @@ public class ManagerHome extends javax.swing.JFrame {
     private javax.swing.JTable listBookTable;
     private javax.swing.JTable listEmployeeJTable;
     private javax.swing.JLabel timeJLabel;
+    private javax.swing.JTextField userNameSearchJTextField1;
     // End of variables declaration//GEN-END:variables
 }

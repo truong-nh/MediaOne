@@ -38,6 +38,8 @@ public class ProductController {
         this.employee = employee;
     }
     
+    
+    
     public List<Book> getListBook(){
         return mediaOne.getListBook();
     }
@@ -45,7 +47,6 @@ public class ProductController {
     public void addBook(String name, String code , String purcharPrice , String salePrice ,
             String remaining,String productPlacement, String category ,String publisher, String author){
         Book book = new Book();
-        
         book.setId( String.valueOf(this.getIdbook()+1));
         book.setCode(code);
         book.setName(name);
