@@ -21,6 +21,7 @@ public class Employee extends Person{
     }
 
     public Employee() {
+        Account account= new Account();
     }
 
     public Account getAccount() {
@@ -30,6 +31,8 @@ public class Employee extends Person{
     public void setAccount(Account account) {
         this.account = account;
     }
+   
+    
 
     public int getSalary() {
         return salary;

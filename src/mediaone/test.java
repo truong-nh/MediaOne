@@ -1,0 +1,23 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package mediaone;
+
+import Product.Book;
+import person.Employee;
+
+/**
+ *
+ * @author Admin
+ */
+public class test {
+    public static void main(String[] args) {
+        MediaOne mediaOne= new MediaOne();
+        
+        for(Employee employee: mediaOne.getListEmployee()){
+            System.out.println(employee.getId());
+        }
+     //   System.out.println(mediaOne.getIdBook());
+    }
+}

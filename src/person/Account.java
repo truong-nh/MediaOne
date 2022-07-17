@@ -19,6 +19,9 @@ public class Account {
         this.role = role;
     }
 
+    public Account() {
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -42,8 +45,7 @@ public class Account {
     public void setRole(String role) {
         this.role = role;
     }
-    
-    
+
     
     
 }

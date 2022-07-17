@@ -37,6 +37,7 @@ public abstract class Product  {
         this.productPlacement = productPlacement;
     }
 
+
     public Product() {
     }
     

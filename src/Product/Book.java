@@ -19,7 +19,7 @@ public class Book extends Product{
     private String author;
 
     public Book() {
-    }
+    } 
 
     public Book(String category, String publisher, String author, String id, String code, String name, long purchasePrice, long salePrice, int remaining, Date addDate, Date updateDate, Employee updater, String productPlacement) {
         super(id, code, name, purchasePrice, salePrice, remaining, addDate, updateDate, updater, productPlacement);
