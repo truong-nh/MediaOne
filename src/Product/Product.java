@@ -120,7 +120,7 @@ public abstract class Product  {
         return productPlacement;
     }
 
-    public void setProductPlacemernt(String productPlacement) {
+    public void setProductPlacement(String productPlacement) {
         this.productPlacement = productPlacement;
     }
     public void display() {

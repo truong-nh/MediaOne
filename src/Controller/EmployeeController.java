@@ -16,15 +16,11 @@ import person.Employee;
  */
 public class EmployeeController {
     private Employee employee;
-    private MediaOne mediaOne;
-    private DB db;
     
     
     
     public EmployeeController(Employee employee) {
         this.employee = employee;
-        mediaOne= new MediaOne();
-        db= new DB();
     }
 
     public Employee getEmployee() {
@@ -35,28 +31,25 @@ public class EmployeeController {
         this.employee = employee;
     }
     
-    public Employee getEmployee(String id){
+    public Employee getEmployeeByID(String id){
         for(Employee employee: this.getListEmployee()){
            if( employee.getId()== Integer.parseInt(id) ){
               return employee;
-           }
-           else{
-           return null;
            }
         }
         return null;        
     }
     
     public int getIdEmployee(){
-      return  mediaOne.getIdEmployee();
+      return  MediaOne.getIdEmployee();
     }
     
     public List<Employee> getListEmployee(){
-       return mediaOne.getListEmployee();
+       return MediaOne.getListEmployee();
     }
     
     public Employee getEmployeeByUserName(String userName){
-      for(Employee employee: mediaOne.getListEmployee()){
+      for(Employee employee: MediaOne.getListEmployee()){
            if( employee.getAccount().getUserName().equals(userName) ){
               return employee;
            }
@@ -79,14 +72,14 @@ public class EmployeeController {
            newEmployee.setPhone(phone);
            newEmployee.setBorn(Integer.parseInt(born));
            
-           mediaOne.getListEmployee().add(newEmployee);
-           db.addEmployee(newEmployee);
+           MediaOne.getListEmployee().add(newEmployee);
+           DB.addEmployee(newEmployee);
     }
      
     public void updateEmployee(String userName, String salary){
        employee = this.getEmployeeByUserName(userName);
        employee.setSalary(Integer.parseInt(salary));
-       db.updateEmployee(userName, employee);
+       DB.updateEmployee(userName, employee);
     }
 
     public EmployeeController() {

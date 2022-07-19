@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import mediaone.MediaOne;
 import person.Account;
 import person.Employee;
 
@@ -114,6 +115,7 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        MediaOne mediaOne = new MediaOne();
         String userName= userNameJTextField.getText();
         String password= String.valueOf(passwordJPasswordField.getPassword());
         Connection connection = JDBCConnection.getJDBCConnection();

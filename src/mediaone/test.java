@@ -15,9 +15,6 @@ public class test {
     public static void main(String[] args) {
         MediaOne mediaOne= new MediaOne();
         
-        for(Employee employee: mediaOne.getListEmployee()){
-            System.out.println(employee.getId());
-        }
-     //   System.out.println(mediaOne.getIdBook());
+        System.out.println(mediaOne.getListDiscMusics().size());
     }
 }
