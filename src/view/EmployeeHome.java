@@ -9,12 +9,17 @@ import view.bookform.BookForm;
 import view.clock.ClockThread;
 import Controller.ProductController;
 import Product.Book;
+import Product.DiscMovie;
 import Product.DiscMusic;
 import java.awt.HeadlessException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import person.Employee;
+import view.discMovieForm.DiscMovieForm;
+import view.discMovieForm.DiscMovieFormEdit;
 import view.discmusicform.DiscMusicForm;
 import view.discmusicform.DiscMusicFormEdit;
 
@@ -72,16 +77,16 @@ public class EmployeeHome extends javax.swing.JFrame {
         codeDiscMusicJTextField2 = new javax.swing.JTextField();
         findJButton2 = new javax.swing.JButton();
         discMusicJcombobox = new javax.swing.JComboBox<>();
-        discFilmJPanel = new javax.swing.JPanel();
-        dircMusicjScrollPane4 = new javax.swing.JScrollPane();
-        listDiscFilmJTable = new javax.swing.JTable();
+        discMovieJPanel = new javax.swing.JPanel();
+        discMoviejScrollPane4 = new javax.swing.JScrollPane();
+        listDiscMovieJTable = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jButton15 = new javax.swing.JButton();
         getAllButton3 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
-        codediscFilmJTextField3 = new javax.swing.JTextField();
+        codediscMovieJTextField3 = new javax.swing.JTextField();
         findJButton3 = new javax.swing.JButton();
-        discFilmJcombobox1 = new javax.swing.JComboBox<>();
+        discMovieJcombobox1 = new javax.swing.JComboBox<>();
         GioHang = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -311,7 +316,7 @@ public class EmployeeHome extends javax.swing.JFrame {
 
         homeJTablePane.addTab("Đĩa nhạc", discMusicJpanel);
 
-        listDiscFilmJTable.setModel(new javax.swing.table.DefaultTableModel(
+        listDiscMovieJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -319,7 +324,7 @@ public class EmployeeHome extends javax.swing.JFrame {
 
             }
         ));
-        dircMusicjScrollPane4.setViewportView(listDiscFilmJTable);
+        discMoviejScrollPane4.setViewportView(listDiscMovieJTable);
 
         jButton15.setText("Thêm mới");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -342,9 +347,9 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
-        codediscFilmJTextField3.addActionListener(new java.awt.event.ActionListener() {
+        codediscMovieJTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codediscFilmJTextField3ActionPerformed(evt);
+                codediscMovieJTextField3ActionPerformed(evt);
             }
         });
 
@@ -355,7 +360,7 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
-        discFilmJcombobox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sản phẩm", "Tên sản phẩm" }));
+        discMovieJcombobox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sản phẩm", "Tên sản phẩm" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -363,9 +368,9 @@ public class EmployeeHome extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(discFilmJcombobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(discMovieJcombobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(codediscFilmJTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(codediscMovieJTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(findJButton3)
                 .addGap(18, 18, 18)
@@ -381,33 +386,33 @@ public class EmployeeHome extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(codediscFilmJTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codediscMovieJTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(findJButton3)
                     .addComponent(jButton16)
                     .addComponent(jButton15)
                     .addComponent(getAllButton3)
-                    .addComponent(discFilmJcombobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(discMovieJcombobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout discFilmJPanelLayout = new javax.swing.GroupLayout(discFilmJPanel);
-        discFilmJPanel.setLayout(discFilmJPanelLayout);
-        discFilmJPanelLayout.setHorizontalGroup(
-            discFilmJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dircMusicjScrollPane4)
+        javax.swing.GroupLayout discMovieJPanelLayout = new javax.swing.GroupLayout(discMovieJPanel);
+        discMovieJPanel.setLayout(discMovieJPanelLayout);
+        discMovieJPanelLayout.setHorizontalGroup(
+            discMovieJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(discMoviejScrollPane4)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        discFilmJPanelLayout.setVerticalGroup(
-            discFilmJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(discFilmJPanelLayout.createSequentialGroup()
+        discMovieJPanelLayout.setVerticalGroup(
+            discMovieJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(discMovieJPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(dircMusicjScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addComponent(discMoviejScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        homeJTablePane.addTab("Đĩa phim", discFilmJPanel);
+        homeJTablePane.addTab("Đĩa phim", discMovieJPanel);
 
         jLabel2.setText("Số điện thoại khách hàng");
 
@@ -618,7 +623,7 @@ public class EmployeeHome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+        SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         if ( String.valueOf(bookJComboBox2.getSelectedItem()).equals("Tên sản phẩm") ){
@@ -668,11 +673,10 @@ public class EmployeeHome extends javax.swing.JFrame {
         defaultTableModel.addColumn("Category");
         defaultTableModel.addColumn("Publisher");
         defaultTableModel.addColumn("Author");
-
         
         List<Book> books = productController.getListBook();
         for(Book book : books){
-        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
+        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),formatter.format(book.getAddDate()),formatter.format(book.getUpdateDate()),book.getUpdater().getId(),
             book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
         }
     }//GEN-LAST:event_getAllButtonActionPerformed
@@ -729,7 +733,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         if ( bookJComboBox2.getSelectedItem().equals("Tên sản phẩm") ){
           List<Book> books= productController.getBooksByName(codeJTextField.getText());
           for(Book book : books){
-        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
+        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),formatter.format(book.getAddDate()),formatter.format(book.getUpdateDate()),book.getUpdater().getId(),
             book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
         }
         }
@@ -790,10 +794,6 @@ public class EmployeeHome extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để thêm mới");
         }
         else{
-         productController = new ProductController(employee);
-        if (codeDiscMusicJTextField2.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
-        }
         productController = new ProductController(employee);
         if (codeDiscMusicJTextField2.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
@@ -844,7 +844,7 @@ public class EmployeeHome extends javax.swing.JFrame {
             
         
          for(DiscMusic discMusic: listDiscMusics){
-        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),discMusic.getAddDate(),discMusic.getUpdateDate(),discMusic.getUpdater().getId(),
+        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),formatter.format(discMusic.getAddDate()),formatter.format(discMusic.getUpdateDate()),discMusic.getUpdater().getId(),
             discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
         }
          
@@ -906,7 +906,7 @@ public class EmployeeHome extends javax.swing.JFrame {
           List<DiscMusic> listDiscMusics= productController.getDiscMusicsByName(codeDiscMusicJTextField2.getText());
           for(DiscMusic discMusic : listDiscMusics){
               
-        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),discMusic.getAddDate(),discMusic.getUpdateDate(),discMusic.getUpdater().getId(),
+        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),formatter.format(discMusic.getAddDate()),formatter.format(discMusic.getUpdateDate()),discMusic.getUpdater().getId(),
             discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
         }
         }
@@ -914,7 +914,7 @@ public class EmployeeHome extends javax.swing.JFrame {
             
         try {
             DiscMusic discMusic = productController.getDiscMusicByCode(codeDiscMusicJTextField2.getText());
-        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),discMusic.getAddDate(),discMusic.getUpdateDate(),discMusic.getUpdater().getId(),
+        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),formatter.format(discMusic.getAddDate()),formatter.format(discMusic.getUpdateDate()),discMusic.getUpdater().getId(),
             discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Nhập lại mã sản phẩm: ");
@@ -927,22 +927,132 @@ public class EmployeeHome extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
+        if ( String.valueOf(discMovieJcombobox1.getSelectedItem()).equals("Tên sản phẩm") ){
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để thêm mới");
+        }
+        else{
+         productController = new ProductController(employee);
+        if (codediscMovieJTextField3.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
+        }
+        else{
+          if (productController.getDiscMovieByCode(codeDiscMusicJTextField2.getText())!= null ){
+              JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
+          }
+        else{
+        new DiscMovieForm(codediscMovieJTextField3.getText(),employee).setVisible(true);
+        this.setVisible(false);
+        }   
+        }
+        }
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void getAllButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButton3ActionPerformed
         // TODO add your handling code here:
+        productController= new ProductController(employee);
+        DefaultTableModel defaultTableModel;
+     defaultTableModel= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listDiscMovieJTable.setModel(defaultTableModel);
+        
+        defaultTableModel.addColumn("ID");
+        defaultTableModel.addColumn("Code");
+        defaultTableModel.addColumn("Name");
+        defaultTableModel.addColumn("PurcharPrice");
+        defaultTableModel.addColumn("SalePrice");
+        defaultTableModel.addColumn("Remaining");
+        defaultTableModel.addColumn("AddDate");
+        defaultTableModel.addColumn("UpdateDate");
+        defaultTableModel.addColumn("IdUpdater");
+        defaultTableModel.addColumn("ProductPlacement");
+        defaultTableModel.addColumn("Genre");
+        defaultTableModel.addColumn("Length");
+        defaultTableModel.addColumn("year");
+        defaultTableModel.addColumn("actor");
+        defaultTableModel.addColumn("director");
+        
+        
+          List<DiscMovie> discMovies= productController.getListDiscMovie();
+          for(DiscMovie discMovie : discMovies){
+        defaultTableModel.addRow(new Object[]{discMovie.getId(),discMovie.getCode(),discMovie.getName(),discMovie.getPurchasePrice(),discMovie.getSalePrice(),discMovie.getRemaining(),formatter.format(discMovie.getAddDate()),formatter.format(discMovie.getUpdateDate()),discMovie.getUpdater().getId(),
+            discMovie.getProductPlacement(),discMovie.getGenre(),discMovie.getLength(),discMovie.getYear(),discMovie.getActor(),discMovie.getDirector() });
+        }
+         
     }//GEN-LAST:event_getAllButton3ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
+        if ( discMovieJcombobox1.getSelectedItem().equals("Tên sản phẩm") ){
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để chỉnh sửa");
+        }
+        else{
+        productController= new ProductController(employee);
+        String code= codediscMovieJTextField3.getText();
+        
+        if ( productController.getDiscMovieByCode(code)!= null ){      
+          new DiscMovieFormEdit( productController.getDiscMovieByCode(code),employee).setVisible(true);
+          this.setVisible(false);
+        }
+        else{
+           JOptionPane.showMessageDialog(null, "Mã sản phẩm chưa tồn tại");
+        }
+        }
     }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void codediscFilmJTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codediscFilmJTextField3ActionPerformed
+    private void codediscMovieJTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codediscMovieJTextField3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_codediscFilmJTextField3ActionPerformed
+    }//GEN-LAST:event_codediscMovieJTextField3ActionPerformed
 
     private void findJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findJButton3ActionPerformed
         // TODO add your handling code here:
+        productController= new ProductController(employee);
+        DefaultTableModel defaultTableModel;
+     defaultTableModel= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listDiscMovieJTable.setModel(defaultTableModel);
+        
+        defaultTableModel.addColumn("ID");
+        defaultTableModel.addColumn("Code");
+        defaultTableModel.addColumn("Name");
+        defaultTableModel.addColumn("PurcharPrice");
+        defaultTableModel.addColumn("SalePrice");
+        defaultTableModel.addColumn("Remaining");
+        defaultTableModel.addColumn("AddDate");
+        defaultTableModel.addColumn("UpdateDate");
+        defaultTableModel.addColumn("IdUpdater");
+        defaultTableModel.addColumn("ProductPlacement");
+        defaultTableModel.addColumn("Genre");
+        defaultTableModel.addColumn("Length");
+        defaultTableModel.addColumn("year");
+        defaultTableModel.addColumn("actor");
+        defaultTableModel.addColumn("director");
+        
+        if ( discMovieJcombobox1.getSelectedItem().equals("Tên sản phẩm") ){
+          List<DiscMovie> discMovies= productController.getDiscMovieByName(codediscMovieJTextField3.getText());
+          for(DiscMovie discMovie : discMovies){
+        defaultTableModel.addRow(new Object[]{discMovie.getId(),discMovie.getCode(),discMovie.getName(),discMovie.getPurchasePrice(),discMovie.getSalePrice(),discMovie.getRemaining(),formatter.format(discMovie.getAddDate()),formatter.format(discMovie.getUpdateDate()),discMovie.getUpdater().getId(),
+            discMovie.getProductPlacement(),discMovie.getGenre(),discMovie.getLength(),discMovie.getYear(),discMovie.getActor(),discMovie.getDirector() });
+        }
+        }
+        else{
+            
+        try {
+            DiscMovie discMovie= productController.getDiscMovieByCode(codediscMovieJTextField3.getText());
+        defaultTableModel.addRow(new Object[]{discMovie.getId(),discMovie.getCode(),discMovie.getName(),discMovie.getPurchasePrice(),discMovie.getSalePrice(),discMovie.getRemaining(),formatter.format(discMovie.getAddDate()),formatter.format(discMovie.getUpdateDate()),discMovie.getUpdater().getId(),
+            discMovie.getProductPlacement(),discMovie.getGenre(),discMovie.getLength(),discMovie.getYear(),discMovie.getActor(),discMovie.getDirector() });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nhập lại mã sản phẩm: ");
+        }
+        
+        }  
     }//GEN-LAST:event_findJButton3ActionPerformed
 
     /**
@@ -988,12 +1098,12 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JScrollPane bookjScrollPane;
     private javax.swing.JTextField codeDiscMusicJTextField2;
     private javax.swing.JTextField codeJTextField;
-    private javax.swing.JTextField codediscFilmJTextField3;
+    private javax.swing.JTextField codediscMovieJTextField3;
     private javax.swing.JButton deleteOrderJButton;
     private javax.swing.JScrollPane dircMusicjScrollPane3;
-    private javax.swing.JScrollPane dircMusicjScrollPane4;
-    private javax.swing.JPanel discFilmJPanel;
-    private javax.swing.JComboBox<String> discFilmJcombobox1;
+    private javax.swing.JPanel discMovieJPanel;
+    private javax.swing.JComboBox<String> discMovieJcombobox1;
+    private javax.swing.JScrollPane discMoviejScrollPane4;
     private javax.swing.JComboBox<String> discMusicJcombobox;
     private javax.swing.JPanel discMusicJpanel;
     private javax.swing.JButton findJButton;
@@ -1028,7 +1138,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTable listBookTable;
-    private javax.swing.JTable listDiscFilmJTable;
+    private javax.swing.JTable listDiscMovieJTable;
     private javax.swing.JTable listDiscMusicTable1;
     private javax.swing.JButton newOrderJButton;
     private javax.swing.JTextField orderAmoutJTextField;

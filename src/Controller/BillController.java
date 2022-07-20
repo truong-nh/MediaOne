@@ -25,8 +25,14 @@ public class BillController {
         this.employee = employee;
     }
     
-    public int getIdBill(){
-          return MediaOne.getIdBill();
+    public int getIdBill() {
+        int max=0;
+        for(Bill bill :MediaOne.getListBill()){
+           if(bill.getId()>max){
+           max=bill.getId();
+           }
+        }
+        return max;
     }
     public List<Bill> getListBills(){
           return MediaOne.getListBill();

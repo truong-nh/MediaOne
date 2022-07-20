@@ -21,84 +21,60 @@ public class MediaOne {
     private static List<Employee> listEmployee;
     private static List<Bill> listBill;
     private static List<DiscMusic> listDiscMusics;
+    private static List<DiscMovie> listDiscMovies;
     
     public MediaOne() {
         listBook = DB.getListBook();
         listEmployee= DB.getListEmployees();
         listBill= DB.getListBills();
         listDiscMusics= DB.getListDiscMusics();
+        listDiscMovies=DB.getliDiscMovie();
     }
 
-    
     public static List<Bill> getListBill() {
-        return DB.getListBills();
+        return listBill;
     }
 
-    public static int getIdBill() {
-        int max=0;
-        for(Bill bill :MediaOne.getListBill()){
-           if(bill.getId()>max){
-           max=bill.getId();
-           }
-        }
-        return max;
+    public static void setListBill(List<Bill> listBill) {
+        MediaOne.listBill = listBill;
     }
 
-    //    public static void setListBill(List<Bill> listBill) {
-//        this.listBill = listBill;
-//    }
     //book
     public static List<Book> getListBook() {
         return MediaOne.listBook;
     }
-    
-    public static int getIdBook() {
-        return MediaOne.getListBook().size();
+
+    public static void setListBook(List<Book> listBook1) {
+        MediaOne.listBook = listBook1;
     }
     
-   
-    
-//    public static void setListBook(List<Book> listBook) {
-//        this.listBook = listBook;
-//    }
-//    
     
   //employee
-    public static List<Employee> getListEmployee() {
-        return DB.getListEmployees();
+    public static List<Employee> getListEmployee(){
+        return listEmployee;
     }
 
-    public static int getIdEmployee() {
-        int max=0;
-        for(Employee employee :MediaOne.getListEmployee()){
-           if(employee.getId()>max){
-           max=employee.getId();
-           }
-        }
-        return max;
+    public static void setListEmployee(List<Employee> listEmployee) {
+        MediaOne.listEmployee = listEmployee;
     }
     
-    
     //music
-    public static List<DiscMusic> getListDiscMusics(){
-        return DB.getListDiscMusics();
+    public static List<DiscMusic> getListDiscMusics() {
+        return MediaOne.listDiscMusics;
     }
 
     public static void setListDiscMusics(List<DiscMusic> listDiscMusics) {
         MediaOne.listDiscMusics = listDiscMusics;
     }
     
-    public static int getIdDiscMusic(){
-      return MediaOne.getListDiscMusics().size();
-    }
-    
+
     // movie
     public static List<DiscMovie> getListDiscMovies(){
-      return DB.getliDiscMovie();
+      return MediaOne.listDiscMovies;
     }
-    
-    public static int getIdDiscMovie(){
-      return MediaOne.getListDiscMovies().size();
+
+    public static void setListDiscMovies(List<DiscMovie> listDiscMovies) {
+        MediaOne.listDiscMovies = listDiscMovies;
     }
     
 }

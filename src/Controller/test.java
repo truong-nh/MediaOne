@@ -29,24 +29,31 @@ public class test {
         SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String strDate = formatter.format(date);
         MediaOne mediaOne = new  MediaOne();
+        MediaOne.setListBook(DB.getListBook());
 //      // book c= new Book(category, publisher, author, id, code, name, 0, 0, 0, addDate, updateDate, employee, productPlacement)
        Book  book1 = new Book("category", "publisher", "1234567", "11253", "code1", "name1", 2003, 0, 0, date, date, employee, "productPlacement");
- //       productController.sellBook("truonh", 2);
-        
+       // productController.sellBook(" protruonh", 2);
+      //  System.out.println( formatter.format(date));
+            //   System.out.println(ductController.getBookByCode("truonh").getRemaining());
+              //      productController.addBook("2", "2", "2", "2", "2", "2", "2", "2", "2");
+
+//               for(Book book : productController.getListBook()){
+//                     System.out.println(book.getId());
+//                 }
 //         productController.updateBook("test", "10", "10", "10", "5", "5", "5", "5", "5");
   //       employeeController.addEmployee("3000", "Hùng", "123456789", "2002", "hunggv", "123456", "employee");
    //        employeeController.updateEmployee("truongnh", "200202");
     //        productController.sellBook("test", 5);
    //     billController.addBill("thu", 10000, "");
-                 DiscMusic discMusic1 = new DiscMusic("2", "2", "2", "2", "2", 0, 0, 0, date, date, employee, "2");
+                 DiscMusic discMusic1 = new DiscMusic("3", "3", "3", "3", "3", 3, 3, 3, date, date, employee, "3");
           
                //  productController.addDiscMusic("11", "22", "33", "1", "1", "1", "1", "1");
 //                 for(Book book : productController.getBooksByName("bbbd")){
 //                     System.out.println(book.getCode());
 //                 }
-//              DiscMovie discMovie1 = new DiscMovie("2", 0, 0, "2", "2", "2", "2", "2", 0, 0, 0, date, date, employee, "2");
-//              productController.sellDiscMusic("22", 4);
-//              System.out.println(productController.getDiscMusicByCode("22").getRemaining());
+//              DiscMovie discMovie1 = new DiscMovie("2", 3, 3, "2", "2", "2", "2", "2", 3, 3, 3, date, date, employee, "2");
+   //          productController.sellDiscMovie("2", 4);
+              System.out.println(productController.getDiscMovieByCode("2").getRemaining());
 }
     
 }
