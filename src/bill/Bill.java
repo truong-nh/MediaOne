@@ -4,7 +4,9 @@
  */
 package bill;
 
-import java.util.Date;
+import Product.Product;
+import java.util.Map;
+import person.Customer;
 import person.Employee;
 
 /**
@@ -12,40 +14,36 @@ import person.Employee;
  * @author Admin
  */
 public  class Bill {
-    private Date date;
-    private String type;
+    private long time;
+    private BillType type;
     private int id;
     private long value;
     private Employee employee;
-    private String note; 
+    Map<Product, Integer> productMaps;
+    private Customer customer;
+    private boolean valid;
 
-    public Bill(Date date, String type, int id, long value, Employee employee, String note) {
-        this.date = date;
-        this.type = type;
-        this.id = id;
-        this.value = value;
-        this.employee = employee;
-        this.note = note;
+    public long getTime() {
+        return time;
     }
 
-    public Bill() {
+    public boolean isValid() {
+        return valid;
     }
 
-    
-
-    public Date getDate() {
-        return date;
+    public void setValid(boolean valid) {
+        this.valid = valid;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTime(long time) {
+        this.time = time;
     }
 
-    public String getType() {
+    public BillType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(BillType type) {
         this.type = type;
     }
 
@@ -73,14 +71,19 @@ public  class Bill {
         this.employee = employee;
     }
 
-    public String getNote() {
-        return note;
+    public Map<Product, Integer> getProductMaps() {
+        return productMaps;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setProductMaps(Map<Product, Integer> productMaps) {
+        this.productMaps = productMaps;
     }
-    
-    
-    
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }

@@ -52,8 +52,7 @@ public class MediaOne {
     public static void setListBook(List<Book> listBook1) {
         MediaOne.listBook = listBook1;
     }
-    
-    
+
   //employee
     public static List<Employee> getListEmployee(){
         return listEmployee;

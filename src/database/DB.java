@@ -7,7 +7,9 @@ package database;
 import Product.Book;
 import Product.DiscMovie;
 import Product.DiscMusic;
+import Product.Product;
 import bill.Bill;
+import bill.BillType;
 import config.JDBCConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import person.Account;
 import person.Customer;
 import person.Employee;
@@ -745,27 +749,28 @@ public class DB {
       List<Bill> bills = new ArrayList<>();
         Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst= null;
-        
+
         String sql =" SELECT * FROM bill";
-        
+
         try {
             pst= connection.prepareStatement(sql);
             ResultSet rs= pst.executeQuery();
-            
+
             while(rs.next()){
             Bill bill = new Bill();
             Employee creator = DB.getEmployee(rs.getString("creator"));
-            
-            bill.setDate(rs.getTimestamp("date")) ;
-            bill.setType(rs.getString("type"));
+
+
+            bill.setTime(rs.getTimestamp("date").getTime()); ;
+            bill.setType(BillType.valueOf(rs.getString("type")));
             bill.setId(rs.getInt("id"));
             bill.setValue(rs.getInt("value"));
             bill.setEmployee(creator);
-            bill.setNote(rs.getString("note"));
-            
+//            bill.setCustomer(rs.getString("note"));
+
             bills.add(bill);
         }
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -783,42 +788,41 @@ public class DB {
                     ex.printStackTrace();
                 }
             }
-        }        
+        }
         return bills;
-   
+
     }
     
-    public static void addBill(Bill bill){
+    public static void saveBill(Bill bill){
        Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst = null;
-        String sql = "INSERT INTO bill (ID, date, type, value, creator, note) "
+        PreparedStatement pst2 = null;
+        String sqlBill = "INSERT INTO bill (ID, date, type, value, creator, customer) "
                 + "VALUE(?,?,?,?,?,?)";
- 
+        String sqlBillProduct = "INSERT into BILL_PRODUCT(bill_id, product_code, amount)"
+            + "VALUE(?,?,?)";
         try {
-            pst = connection.prepareStatement(sql);
+            pst = connection.prepareStatement(sqlBill);
+            pst2 = connection.prepareStatement(sqlBillProduct);
             pst.setInt(1, bill.getId());
-            Date date = new Date();             
-            SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String strDate = formatter.format(date); 
-            pst.setString(2, strDate);
-            pst.setString(3, bill.getType());
+            Date date = new Date();
+            pst.setLong(2, bill.getTime());
+            pst.setString(3, bill.getType().name());
             pst.setInt(4, (int) bill.getValue());
             pst.setString(5, String.valueOf(bill.getEmployee().getId()));
-            pst.setString(6, bill.getNote());
-            
+            pst.setString(6, bill.getCustomer().getPhone());
 
-            
-            
-//            pst.setInt(1,employee.getId());
-//            pst.setString(2, String.valueOf(employee.getSalary()) );
-//            pst.setString(3,employee.getName());
-//            pst.setString(4,employee.getPhone());
-//            pst.setInt(5, employee.getBorn());
-//            pst.setString(6, employee.getAccount().getUserName());
-//            pst.setString(7, employee.getAccount().getPassword());
-//            pst.setString(8, employee.getAccount().getRole());
-            int rs = pst.executeUpdate();
+            ResultSet rs = pst.executeQuery();
             System.out.println(rs);
+            int billId = rs.getInt("id");
+            pst2.setInt(1, billId);
+            Map<Product, Integer> maps = bill.getProductMaps();
+            Set<Product> products = maps.keySet();
+            for (Product product : products){
+                pst2.setString(2, product.getCode());
+                pst2.setInt(3, maps.get(product));
+                pst2.execute();
+            }
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -959,4 +963,77 @@ public class DB {
             }
         } 
     }
+
+    public static long getFinance(long time) {
+        Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        String sql = "SELECT * FROM finance\n"
+            + "WHERE time < time \n"
+            + "ORDER BY time DESC\n"
+            + "LIMIT 1";
+        try {
+            pst = connection.prepareStatement(sql);
+            ResultSet resultSet = pst.executeQuery();
+            long result = resultSet.getLong("total_value");
+            return result;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return 1;
+    }
+
+    public static void saveFinance(long totalValue, Bill bill, long cost) {
+        Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        long time = new Date().getTime();
+        String sql = "INSERT INTO finance (finance, time, description) "
+            + "VALUE(?,?,?)";
+        try {
+            pst = connection.prepareStatement(sql);
+            pst.setLong(1, totalValue);
+            pst.setLong(2, time);
+
+            if (bill == null){
+                pst.setString(3, String.valueOf(cost).concat("_OTHER"));
+            } else {
+                pst.setString(3, String.valueOf(bill.getValue()).concat("_")
+                    .concat(bill.getType().name()));
+            }
+            ResultSet resultSet = pst.executeQuery();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
