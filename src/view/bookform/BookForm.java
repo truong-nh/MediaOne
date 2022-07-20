@@ -4,14 +4,8 @@
  */
 package view.bookform;
 
-import Controller.ProductController;
-import Product.Book;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.JFrame;
+import controller.ProductController;
 import javax.swing.JOptionPane;
-import person.Account;
 import person.Employee;
 import view.EmployeeHome;
 

@@ -1,6 +1,6 @@
 package order;
 
-import Product.Product;
+import product.Product;
 import java.util.Date;
 import java.util.Map;
 import person.Customer;
@@ -96,9 +96,4 @@ public class Order {
     return this;
   }
 
-  public void payOrder(Order order) {
-    //todo: check exist product
-    //todo: update shop-money
-    //todo: update products
-  }
 }

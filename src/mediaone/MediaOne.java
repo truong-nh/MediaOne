@@ -4,9 +4,9 @@
  */
 package mediaone;
 
-import Product.Book;
-import Product.DiscMovie;
-import Product.DiscMusic;
+import product.Book;
+import product.DiscMovie;
+import product.DiscMusic;
 import bill.Bill;
 import database.DB;
 import java.util.List;

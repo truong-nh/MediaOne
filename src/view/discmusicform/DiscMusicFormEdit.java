@@ -4,11 +4,8 @@
  */
 package view.discmusicform;
 
-import view.bookform.*;
-import Controller.ProductController;
-import Product.Book;
-import Product.DiscMusic;
-import javax.swing.JOptionPane;
+import controller.ProductController;
+import product.DiscMusic;
 import person.Employee;
 import view.EmployeeHome;
 

@@ -4,8 +4,7 @@
  */
 package view.employeeform;
 
-import Controller.EmployeeController;
-import Controller.ProductController;
+import controller.EmployeeController;
 import javax.swing.JOptionPane;
 import person.Employee;
 import view.EmployeeHome;

@@ -4,13 +4,11 @@
  */
 package database;
 
-import Product.Book;
-import Product.DiscMovie;
-import Product.DiscMusic;
-import bill.Bill;
+import product.Book;
+import product.DiscMovie;
+import product.DiscMusic;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import person.Account;
 import person.Employee;
 
 /**

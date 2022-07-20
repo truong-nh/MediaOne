@@ -2,18 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controller;
+package controller;
 
-import Product.Book;
-import Product.DiscMovie;
-import Product.DiscMusic;
+import product.Book;
+import product.DiscMovie;
+import product.DiscMusic;
 import database.DB;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import mediaone.MediaOne;
 import person.Employee;
-import person.Person;
 
 /**
  *

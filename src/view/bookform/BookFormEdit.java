@@ -4,8 +4,8 @@
  */
 package view.bookform;
 
-import Controller.ProductController;
-import Product.Book;
+import controller.ProductController;
+import product.Book;
 import person.Employee;
 import view.EmployeeHome;
 

@@ -4,16 +4,15 @@
  */
 package database;
 
-import Product.Book;
-import Product.DiscMovie;
-import Product.DiscMusic;
+import product.Book;
+import product.DiscMovie;
+import product.DiscMusic;
 import bill.Bill;
 import config.JDBCConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -828,28 +827,25 @@ public class DB {
         return bills;
    
     }
-    
-    public static void addBill(Bill bill){
-       Connection connection = JDBCConnection.getJDBCConnection();
+
+    public static void addBill(Bill bill) {
+        Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst = null;
         String sql = "INSERT INTO bill (ID, date, type, value, creator, note) "
-                + "VALUE(?,?,?,?,?,?)";
- 
+            + "VALUE(?,?,?,?,?,?)";
+
         try {
             pst = connection.prepareStatement(sql);
             pst.setInt(1, bill.getId());
-            Date date = new Date();             
-            SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            String strDate = formatter.format(date); 
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String strDate = formatter.format(date);
             pst.setString(2, strDate);
             pst.setString(3, bill.getType());
             pst.setInt(4, (int) bill.getValue());
             pst.setString(5, String.valueOf(bill.getEmployee().getId()));
             pst.setString(6, bill.getNote());
-            
 
-            
-            
 //            pst.setInt(1,employee.getId());
 //            pst.setString(2, String.valueOf(employee.getSalary()) );
 //            pst.setString(3,employee.getName());
@@ -878,7 +874,72 @@ public class DB {
                     ex.printStackTrace();
                 }
             }
-        } 
+        }
     }
-    
+
+    public static long getFinance(long time) {
+        Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        String sql = "SELECT * FROM finance\n"
+            + "WHERE time < time \n"
+            + "ORDER BY time DESC\n"
+            + "LIMIT 1";
+        try {
+            pst = connection.prepareStatement(sql);
+            ResultSet resultSet = pst.executeQuery();
+            long result = resultSet.getLong("total_value");
+            return result;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return 1;
+    }
+
+    public static void saveFinance(long totalValue) {
+        Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        long time = new Date().getTime();
+        String sql = "INSERT INTO finance (finance, time) "
+            + "VALUE(?,?)";
+        try {
+            pst = connection.prepareStatement(sql);
+            pst.setLong(1, totalValue);
+            pst.setLong(2, time);
+            ResultSet resultSet = pst.executeQuery();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
