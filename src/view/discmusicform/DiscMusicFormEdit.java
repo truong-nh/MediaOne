@@ -8,6 +8,7 @@ import controller.ProductController;
 import product.DiscMusic;
 import person.Employee;
 import view.EmployeeHome;
+import view.ManagerHome;
 
 /**
  *
@@ -24,7 +25,7 @@ public class DiscMusicFormEdit extends javax.swing.JFrame {
        nameJTextField.setText(disc.getName());
        nameJTextField.setEditable(false);
        codeJTextField.setText(disc.getCode());
-       nameJTextField.setEditable(false);
+       codeJTextField.setEditable(false);
        purcharJTextField.setText(String.valueOf(disc.getPurchasePrice()));
        saleJTextField.setText(String.valueOf(disc.getSalePrice())) ;
        amountJTextField.setText(String.valueOf(disc.getRemaining()) );
@@ -206,29 +207,27 @@ public class DiscMusicFormEdit extends javax.swing.JFrame {
         String singer = singerTextField.getText();
 
           productController.updateDiscMusic(code, purcharPrice, salePrice, remaining, productPlacement, genre, singer);
-            new EmployeeHome(productController.getEmployee()).setVisible(true);
-            this.setVisible(false);
-        
-//        String name = nameJTextField.getText();
-//        String purcharPrice= purcharJTextField.getText();
-//        String code  = codeJTextField.getText();
-//        String salePrice= saleJTextField.getText();
-//        String remaining= amountJTextField.getText();
-//        String productPlacement = productPlaceTextField.getText();
-//        String category = categoryJTextField.getText();
-//        String publisher = publishTextField.getText();
-//        String author = authorJTextField.getText();
-//
-//        productController.updateBook(code, purcharPrice, salePrice, remaining, productPlacement, category, publisher, author);
-//
-//        new EmployeeHome(productController.getEmployee()).setVisible(true);
-//        this.setVisible(false);
+ 
+        if(productController.getEmployee().getAccount().getRole().equals("employee")){ 
+        new EmployeeHome(productController.getEmployee()).setVisible(true);
+        this.setVisible(false);
+        }
+        else {
+        new ManagerHome(productController.getEmployee()).setVisible(true);
+        this.setVisible(false);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        if(productController.getEmployee().getAccount().getRole().equals("employee")){ 
         new EmployeeHome(productController.getEmployee()).setVisible(true);
         this.setVisible(false);
+        }
+        else {
+        new ManagerHome(productController.getEmployee()).setVisible(true);
+        this.setVisible(false);
+        }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**

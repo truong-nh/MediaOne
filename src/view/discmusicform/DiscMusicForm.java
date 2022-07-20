@@ -8,6 +8,7 @@ import controller.ProductController;
 import javax.swing.JOptionPane;
 import person.Employee;
 import view.EmployeeHome;
+import view.ManagerHome;
 
 
 
@@ -192,8 +193,15 @@ public class DiscMusicForm extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        if(productController.getEmployee().getAccount().getRole().equals("employee")){ 
         new EmployeeHome(productController.getEmployee()).setVisible(true);
         this.setVisible(false);
+        }
+        else {
+        new ManagerHome(productController.getEmployee()).setVisible(true);
+        this.setVisible(false);
+        }
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -218,8 +226,14 @@ public class DiscMusicForm extends javax.swing.JFrame {
         }
          
         if(test){
-            new EmployeeHome(productController.getEmployee()).setVisible(true);
+            if(productController.getEmployee().getAccount().getRole().equals("employee")){ 
+        new EmployeeHome(productController.getEmployee()).setVisible(true);
         this.setVisible(false);
+        }
+        else {
+        new ManagerHome(productController.getEmployee()).setVisible(true);
+        this.setVisible(false);
+        }
         } 
         
     }//GEN-LAST:event_jButton1ActionPerformed

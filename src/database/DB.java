@@ -48,8 +48,8 @@ public class DB {
             book.setPurchasePrice(rs.getInt("purcharPrice"));
             book.setSalePrice(rs.getInt("SalePrice"));
             book.setRemaining(rs.getInt("Remaining"));
-            book.setAddDate(rs.getTimestamp("AddDate"));
-            book.setUpdateDate(rs.getTimestamp("UpdateDate"));
+            book.setAddDate(rs.getDate("AddDate"));
+            book.setUpdateDate(rs.getDate("UpdateDate"));
             
             book.setProductPlacement(rs.getString("ProductPlacement"));
             book.setCategory(rs.getString("Category"));

@@ -12,6 +12,6 @@ public class test {
     public static void main(String[] args) {
         MediaOne mediaOne= new MediaOne();
         
-        System.out.println(mediaOne.getListDiscMusics().size());
+        System.out.println(mediaOne.getListEmployee().size());
     }
 }

@@ -17,8 +17,8 @@ import person.Employee;
 public class EmployeeController {
     private Employee employee;
     
-    
-    
+    public EmployeeController() {
+    }
     public EmployeeController(Employee employee) {
         this.employee = employee;
     }
@@ -40,9 +40,16 @@ public class EmployeeController {
         return null;        
     }
     
-    public int getIdEmployee(){
-      return  MediaOne.getIdEmployee();
+   public  int getIdEmployee() {
+        int max=0;
+        for(Employee employee :MediaOne.getListEmployee()){
+           if(employee.getId()>max){
+           max=employee.getId();
+           }
+        }
+        return max;
     }
+    
     
     public List<Employee> getListEmployee(){
        return MediaOne.getListEmployee();
@@ -79,9 +86,9 @@ public class EmployeeController {
     public void updateEmployee(String userName, String salary){
        employee = this.getEmployeeByUserName(userName);
        employee.setSalary(Integer.parseInt(salary));
+       MediaOne.setListEmployee(this.getListEmployee());
        DB.updateEmployee(userName, employee);
     }
 
-    public EmployeeController() {
-    }
+   
 }

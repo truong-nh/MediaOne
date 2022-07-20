@@ -8,6 +8,7 @@ import controller.ProductController;
 import product.Book;
 import person.Employee;
 import view.EmployeeHome;
+import view.ManagerHome;
 
 /**
  *
@@ -24,7 +25,7 @@ public class BookFormEdit extends javax.swing.JFrame {
        nameJTextField.setText(book.getName());
        nameJTextField.setEditable(false);
        codeJTextField.setText(book.getCode());
-       nameJTextField.setEditable(false);
+       codeJTextField.setEditable(false);
        purcharJTextField.setText(String.valueOf(book.getPurchasePrice()));
        saleJTextField.setText(String.valueOf(book.getSalePrice())) ;
        amountJTextField.setText(String.valueOf(book.getRemaining()) );
@@ -207,8 +208,16 @@ public class BookFormEdit extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        if(productController.getEmployee().getAccount().getRole().equals("employee")){ 
         new EmployeeHome(productController.getEmployee()).setVisible(true);
         this.setVisible(false);
+        }
+        else {
+        new ManagerHome(productController.getEmployee()).setVisible(true);
+        this.setVisible(false);
+        }
+        
+        
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**

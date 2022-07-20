@@ -209,14 +209,14 @@ public class EmployeeForm extends javax.swing.JFrame {
         }
 
         if(test){
-            new ManagerHome().setVisible(true);
+            new ManagerHome(employeeController.getEmployee()).setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        new EmployeeHome().setVisible(true);
+        new EmployeeHome(employeeController.getEmployee()).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

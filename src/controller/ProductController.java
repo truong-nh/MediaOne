@@ -8,6 +8,7 @@ import product.Book;
 import product.DiscMovie;
 import product.DiscMusic;
 import database.DB;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ProductController {
     public ProductController() {
        
     }
-
+    
     public ProductController(Employee employee) {
         this.employee = employee;
     }
@@ -35,22 +36,25 @@ public class ProductController {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-  
     
-    //BOOK
+    //Book
     public List<Book> getListBook(){
         return MediaOne.getListBook();
     }
     
+    public static int getIdBook() {
+        return MediaOne.getListBook().size();
+    }  // lấy ra idBook hiện tại
+    
     public void addBook(String name, String code , String purcharPrice , String salePrice ,
             String remaining,String productPlacement, String category ,String publisher, String author){
         Book book = new Book();
-        book.setId( String.valueOf(MediaOne.getIdBook()+1));
+        book.setId( String.valueOf(this.getIdBook()+1));
         book.setCode(code);
         book.setName(name);
         book.setPurchasePrice(Long.parseLong(purcharPrice));
         book.setSalePrice(Long.parseLong(salePrice));
-        book.setRemaining(Integer.parseInt(remaining));
+        book.setRemaining(Integer.parseInt(remaining));        
         book.setUpdateDate(new Date());
         book.setAddDate(new Date());
         book.setUpdater(employee);
@@ -58,7 +62,6 @@ public class ProductController {
         book.setCategory(category);
         book.setPublisher(publisher);
         book.setAuthor(author);
-        
         
         MediaOne.getListBook().add(book);
         DB.addBook(book);
@@ -96,7 +99,7 @@ public class ProductController {
         book.setPublisher(publisher);
         book.setAuthor(author);
         
-        
+        MediaOne.setListBook(this.getListBook());
         DB.updateBook(code, book);
     }
     
@@ -104,17 +107,22 @@ public class ProductController {
             Book book= this.getBookByCode(code);
             if(book.getRemaining()>amount){
             book.setRemaining(book.getRemaining()-amount);
+            MediaOne.setListBook(this.getListBook());
             DB.updateBook(code, book);
-            //DB.sellBook(code, amount);
             }
             else{
                 System.out.println("Không đủ sản phẩm");
             }
     }
     
+
     //DISCMUSIC
     public List<DiscMusic> getListDiscMusic(){
        return MediaOne.getListDiscMusics();
+    }
+    
+     public static int getIdDiscMusic(){
+      return MediaOne.getListDiscMusics().size();
     }
     
     public List<DiscMusic> getDiscMusicsByName(String name){
@@ -130,7 +138,7 @@ public class ProductController {
     public void addDiscMusic(String name, String code , String purcharPrice , String salePrice ,
             String remaining,String productPlacement, String genre ,String singer){
         DiscMusic discMusic= new DiscMusic();
-        discMusic.setId( String.valueOf(MediaOne.getIdDiscMusic()+1));
+        discMusic.setId( String.valueOf(this.getIdDiscMusic()+1));
         discMusic.setCode(code);
         discMusic.setName(name);
         discMusic.setPurchasePrice(Long.parseLong(purcharPrice));
@@ -170,7 +178,8 @@ public class ProductController {
         discMusic.setProductPlacement(productPlacement);
         discMusic.setGenre(genre);
         discMusic.setSinger(singer);
- 
+        
+        MediaOne.setListDiscMusics(this.getListDiscMusic());
         DB.updateDiscMusic(code, discMusic);
     }
     
@@ -178,7 +187,7 @@ public class ProductController {
             DiscMusic discMusic= this.getDiscMusicByCode(code);
             if(discMusic.getRemaining()>amount){
             discMusic.setRemaining(discMusic.getRemaining()-amount);
-            
+            MediaOne.setListDiscMusics(this.getListDiscMusic());
             DB.updateDiscMusic(code, discMusic);
             }
             else{
@@ -211,11 +220,15 @@ public class ProductController {
        }
         return null;
     }
-
+   
+    public static int getIdDiscMovie(){
+      return MediaOne.getListDiscMovies().size();
+    }
+    
     public void addDiscMovie(String name, String code , String purcharPrice , String salePrice ,
             String remaining,String productPlacement, String genre ,String length,String year ,String actor ,String director  ){
         DiscMovie discMovie= new DiscMovie();
-        discMovie.setId( String.valueOf(MediaOne.getIdDiscMusic()+1));
+        discMovie.setId( String.valueOf(this.getIdDiscMovie()+1));
         discMovie.setCode(code);
         discMovie.setName(name);
         discMovie.setPurchasePrice(Long.parseLong(purcharPrice));
@@ -251,14 +264,17 @@ public class ProductController {
         discMovie.setYear(Integer.parseInt(year));
         discMovie.setActor(actor);
         discMovie.setDirector(director);
+        MediaOne.setListDiscMusics(this.getListDiscMusic());
         DB.updateDiscMovie(code, discMovie);
     }
     
     public void sellDiscMovie(String code, int amount){
-            DiscMovie discMovie= this.getDiscMovieByCode(code);
+        DiscMovie discMovie= this.getDiscMovieByCode(code);
             if(discMovie.getRemaining()>amount){
             discMovie.setRemaining(discMovie.getRemaining()-amount);
-            DB.updateDiscMovie(code, discMovie);
+            
+            MediaOne.setListDiscMusics(this.getListDiscMusic()); 
+            DB.updateDiscMovie(code, discMovie);    
             }
             else{
                 System.out.println("Không đủ sản phẩm");
