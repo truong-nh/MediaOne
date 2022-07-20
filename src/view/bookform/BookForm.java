@@ -26,9 +26,11 @@ public class BookForm extends javax.swing.JFrame {
     /**
      * Creates new form BookForm
      */
-    public BookForm(Employee employee) {
+    public BookForm(String code,Employee employee) {
         initComponents();
         productController = new ProductController(employee);
+        codeJTextField.setText(code);
+        codeJTextField.setEditable(false);
     }
 
     private BookForm() {

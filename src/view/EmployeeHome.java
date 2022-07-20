@@ -9,11 +9,14 @@ import view.bookform.BookForm;
 import view.clock.ClockThread;
 import Controller.ProductController;
 import Product.Book;
+import Product.DiscMusic;
 import java.awt.HeadlessException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import person.Employee;
+import view.discmusicform.DiscMusicForm;
+import view.discmusicform.DiscMusicFormEdit;
 
 /**
  *
@@ -50,18 +53,35 @@ public class EmployeeHome extends javax.swing.JFrame {
         timeJLabel = new javax.swing.JLabel();
         homeJTablePane = new javax.swing.JTabbedPane();
         bookJPanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        bookjScrollPane = new javax.swing.JScrollPane();
         listBookTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         getAllButton = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         codeJTextField = new javax.swing.JTextField();
         findJButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        bookJComboBox2 = new javax.swing.JComboBox<>();
+        discMusicJpanel = new javax.swing.JPanel();
+        dircMusicjScrollPane3 = new javax.swing.JScrollPane();
+        listDiscMusicTable1 = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jButton13 = new javax.swing.JButton();
+        getAllButton2 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        codeDiscMusicJTextField2 = new javax.swing.JTextField();
+        findJButton2 = new javax.swing.JButton();
+        discMusicJcombobox = new javax.swing.JComboBox<>();
+        discFilmJPanel = new javax.swing.JPanel();
+        dircMusicjScrollPane4 = new javax.swing.JScrollPane();
+        listDiscFilmJTable = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
+        jButton15 = new javax.swing.JButton();
+        getAllButton3 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        codediscFilmJTextField3 = new javax.swing.JTextField();
+        findJButton3 = new javax.swing.JButton();
+        discFilmJcombobox1 = new javax.swing.JComboBox<>();
         GioHang = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -103,7 +123,7 @@ public class EmployeeHome extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane2.setViewportView(listBookTable);
+        bookjScrollPane.setViewportView(listBookTable);
 
         jButton10.setText("Thêm mới");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -126,8 +146,6 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Mã sản phẩm:");
-
         codeJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codeJTextFieldActionPerformed(evt);
@@ -141,14 +159,16 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
+        bookJComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sản phẩm", "Tên sản phẩm" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bookJComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addComponent(codeJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(findJButton)
@@ -158,19 +178,19 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jButton10)
                 .addGap(18, 18, 18)
                 .addComponent(getAllButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(836, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
                     .addComponent(codeJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(findJButton)
                     .addComponent(jButton9)
                     .addComponent(jButton10)
-                    .addComponent(getAllButton))
+                    .addComponent(getAllButton)
+                    .addComponent(bookJComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -178,7 +198,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         bookJPanel.setLayout(bookJPanelLayout);
         bookJPanelLayout.setHorizontalGroup(
             bookJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1512, Short.MAX_VALUE)
+            .addComponent(bookjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1584, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bookJPanelLayout.setVerticalGroup(
@@ -187,45 +207,207 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(bookjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         homeJTablePane.addTab("Sách", bookJPanel);
 
-        jButton1.setText("jButton1");
+        listDiscMusicTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jButton1)
-                .addContainerGap(1289, Short.MAX_VALUE))
+            },
+            new String [] {
+
+            }
+        ));
+        dircMusicjScrollPane3.setViewportView(listDiscMusicTable1);
+
+        jButton13.setText("Thêm mới");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        getAllButton2.setText("Lấy tất cả");
+        getAllButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getAllButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setText("Chỉnh sửa");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
+        codeDiscMusicJTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codeDiscMusicJTextField2ActionPerformed(evt);
+            }
+        });
+
+        findJButton2.setText("Tìm kiếm");
+        findJButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findJButton2ActionPerformed(evt);
+            }
+        });
+
+        discMusicJcombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sản phẩm", "Tên sản phẩm" }));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(discMusicJcombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(codeDiscMusicJTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(findJButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton14)
+                .addGap(18, 18, 18)
+                .addComponent(jButton13)
+                .addGap(18, 18, 18)
+                .addComponent(getAllButton2)
+                .addContainerGap(836, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jButton1)
-                .addContainerGap(278, Short.MAX_VALUE))
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codeDiscMusicJTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(findJButton2)
+                    .addComponent(jButton14)
+                    .addComponent(jButton13)
+                    .addComponent(getAllButton2)
+                    .addComponent(discMusicJcombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        homeJTablePane.addTab("Đĩa nhạc", jPanel2);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1512, Short.MAX_VALUE)
+        javax.swing.GroupLayout discMusicJpanelLayout = new javax.swing.GroupLayout(discMusicJpanel);
+        discMusicJpanel.setLayout(discMusicJpanelLayout);
+        discMusicJpanelLayout.setHorizontalGroup(
+            discMusicJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(dircMusicjScrollPane3)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+        discMusicJpanelLayout.setVerticalGroup(
+            discMusicJpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(discMusicJpanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(dircMusicjScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        homeJTablePane.addTab("Đĩa phim", jPanel3);
+        homeJTablePane.addTab("Đĩa nhạc", discMusicJpanel);
+
+        listDiscFilmJTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        dircMusicjScrollPane4.setViewportView(listDiscFilmJTable);
+
+        jButton15.setText("Thêm mới");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+
+        getAllButton3.setText("Lấy tất cả");
+        getAllButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getAllButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton16.setText("Chỉnh sửa");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        codediscFilmJTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codediscFilmJTextField3ActionPerformed(evt);
+            }
+        });
+
+        findJButton3.setText("Tìm kiếm");
+        findJButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findJButton3ActionPerformed(evt);
+            }
+        });
+
+        discFilmJcombobox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sản phẩm", "Tên sản phẩm" }));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(discFilmJcombobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(codediscFilmJTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(findJButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton16)
+                .addGap(18, 18, 18)
+                .addComponent(jButton15)
+                .addGap(18, 18, 18)
+                .addComponent(getAllButton3)
+                .addContainerGap(836, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codediscFilmJTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(findJButton3)
+                    .addComponent(jButton16)
+                    .addComponent(jButton15)
+                    .addComponent(getAllButton3)
+                    .addComponent(discFilmJcombobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout discFilmJPanelLayout = new javax.swing.GroupLayout(discFilmJPanel);
+        discFilmJPanel.setLayout(discFilmJPanelLayout);
+        discFilmJPanelLayout.setHorizontalGroup(
+            discFilmJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(dircMusicjScrollPane4)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        discFilmJPanelLayout.setVerticalGroup(
+            discFilmJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(discFilmJPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(dircMusicjScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        homeJTablePane.addTab("Đĩa phim", discFilmJPanel);
 
         jLabel2.setText("Số điện thoại khách hàng");
 
@@ -323,7 +505,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                             .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GioHangLayout.createSequentialGroup()
-                        .addGap(0, 937, Short.MAX_VALUE)
+                        .addGap(0, 1009, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addGap(260, 260, 260)
                         .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +569,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jButton6)
                 .addGap(76, 76, 76)
                 .addComponent(jButton3)
-                .addContainerGap(873, Short.MAX_VALUE))
+                .addContainerGap(945, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,7 +580,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Khách hàng", jPanel1);
@@ -414,7 +596,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(468, 468, 468)
                 .addComponent(timeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(752, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(homeJTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -431,7 +613,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                         .addComponent(timeJLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(homeJTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -439,7 +621,11 @@ public class EmployeeHome extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        productController = new ProductController(employee);
+        if ( String.valueOf(bookJComboBox2.getSelectedItem()).equals("Tên sản phẩm") ){
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để thêm mới");
+        }
+        else{
+         productController = new ProductController(employee);
         if (codeJTextField.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
         }
@@ -448,11 +634,13 @@ public class EmployeeHome extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
           }
         else{
-        new BookForm(employee).setVisible(true);
+        new BookForm(codeJTextField.getText(),employee).setVisible(true);
         this.setVisible(false);
+        }   
+        }
         }
         
-        }
+        
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void getAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButtonActionPerformed
@@ -491,7 +679,10 @@ public class EmployeeHome extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        
+        if ( bookJComboBox2.getSelectedItem().equals("Tên sản phẩm") ){
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để chỉnh sửa");
+        }
+        else{
         productController= new ProductController(employee);
         String code= codeJTextField.getText();
         
@@ -502,6 +693,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         else{
            JOptionPane.showMessageDialog(null, "Mã sản phẩm chưa tồn tại");
         }
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void codeJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeJTextFieldActionPerformed
@@ -510,7 +702,7 @@ public class EmployeeHome extends javax.swing.JFrame {
 
     private void findJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findJButtonActionPerformed
         // TODO add your handling code here:
-       productController= new ProductController(employee);
+        productController= new ProductController(employee);
         DefaultTableModel defaultTableModel;
      defaultTableModel= new DefaultTableModel(){
             @Override
@@ -533,7 +725,16 @@ public class EmployeeHome extends javax.swing.JFrame {
         defaultTableModel.addColumn("Category");
         defaultTableModel.addColumn("Publisher");
         defaultTableModel.addColumn("Author");
-
+        
+        if ( bookJComboBox2.getSelectedItem().equals("Tên sản phẩm") ){
+          List<Book> books= productController.getBooksByName(codeJTextField.getText());
+          for(Book book : books){
+        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
+            book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
+        }
+        }
+        else{
+            
         try {
             Book book= productController.getBookByCode(codeJTextField.getText());
         defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
@@ -542,7 +743,9 @@ public class EmployeeHome extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nhập lại mã sản phẩm: ");
         }
         
-        
+        }  
+          
+
     }//GEN-LAST:event_findJButtonActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -580,6 +783,167 @@ public class EmployeeHome extends javax.swing.JFrame {
     private void homeJTablePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeJTablePaneMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_homeJTablePaneMouseClicked
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        if ( String.valueOf(discMusicJcombobox.getSelectedItem()).equals("Tên sản phẩm") ){
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để thêm mới");
+        }
+        else{
+         productController = new ProductController(employee);
+        if (codeDiscMusicJTextField2.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
+        }
+        productController = new ProductController(employee);
+        if (codeDiscMusicJTextField2.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
+        }
+        else{
+          if (productController.getDiscMusicByCode(codeDiscMusicJTextField2.getText())!= null ){
+              JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
+          }
+        else{
+        new DiscMusicForm(codeDiscMusicJTextField2.getText(),employee).setVisible(true);
+        this.setVisible(false);
+        }
+        
+        }
+        }
+        
+        
+        
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void getAllButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButton2ActionPerformed
+        // TODO add your handling code here:
+         productController= new ProductController(employee);
+        DefaultTableModel defaultTableModel;
+     defaultTableModel= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listDiscMusicTable1.setModel(defaultTableModel);
+        
+        defaultTableModel.addColumn("ID");
+        defaultTableModel.addColumn("Code");
+        defaultTableModel.addColumn("Name");
+        defaultTableModel.addColumn("PurcharPrice");
+        defaultTableModel.addColumn("SalePrice");
+        defaultTableModel.addColumn("Remaining");
+        defaultTableModel.addColumn("AddDate");
+        defaultTableModel.addColumn("UpdateDate");
+        defaultTableModel.addColumn("IdUpdater");
+        defaultTableModel.addColumn("ProductPlacement");
+        defaultTableModel.addColumn("Genre");
+        defaultTableModel.addColumn("Singer");
+
+        List<DiscMusic> listDiscMusics = productController.getListDiscMusic();
+          
+            
+        
+         for(DiscMusic discMusic: listDiscMusics){
+        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),discMusic.getAddDate(),discMusic.getUpdateDate(),discMusic.getUpdater().getId(),
+            discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
+        }
+         
+    }//GEN-LAST:event_getAllButton2ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        productController= new ProductController(employee);
+        String code= codeDiscMusicJTextField2.getText();
+        
+        if ( discMusicJcombobox.getSelectedItem().equals("Tên sản phẩm") ){
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để chỉnh sửa");
+        }
+        else{
+
+        if ( productController.getDiscMusicByCode(code)!= null ){
+          new DiscMusicFormEdit(productController.getDiscMusicByCode(code),employee).setVisible(true);
+          this.setVisible(false);
+        }
+        else{
+           JOptionPane.showMessageDialog(null, "Mã sản phẩm chưa tồn tại");
+        }
+        }
+  
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void codeDiscMusicJTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeDiscMusicJTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codeDiscMusicJTextField2ActionPerformed
+
+    private void findJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findJButton2ActionPerformed
+        // TODO add your handling code here:
+         productController= new ProductController(employee);
+        DefaultTableModel defaultTableModel;
+     defaultTableModel= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listDiscMusicTable1.setModel(defaultTableModel);
+        
+        defaultTableModel.addColumn("ID");
+        defaultTableModel.addColumn("Code");
+        defaultTableModel.addColumn("Name");
+        defaultTableModel.addColumn("PurcharPrice");
+        defaultTableModel.addColumn("SalePrice");
+        defaultTableModel.addColumn("Remaining");
+        defaultTableModel.addColumn("AddDate");
+        defaultTableModel.addColumn("UpdateDate");
+        defaultTableModel.addColumn("IdUpdater");
+        defaultTableModel.addColumn("ProductPlacement");
+        defaultTableModel.addColumn("Genre");
+        defaultTableModel.addColumn("Singer");
+
+        
+        
+        if ( discMusicJcombobox.getSelectedItem().equals("Tên sản phẩm") ){
+          List<DiscMusic> listDiscMusics= productController.getDiscMusicsByName(codeDiscMusicJTextField2.getText());
+          for(DiscMusic discMusic : listDiscMusics){
+              
+        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),discMusic.getAddDate(),discMusic.getUpdateDate(),discMusic.getUpdater().getId(),
+            discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
+        }
+        }
+        else{
+            
+        try {
+            DiscMusic discMusic = productController.getDiscMusicByCode(codeDiscMusicJTextField2.getText());
+        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),discMusic.getAddDate(),discMusic.getUpdateDate(),discMusic.getUpdater().getId(),
+            discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nhập lại mã sản phẩm: ");
+        }
+        
+        }  
+        
+        
+    }//GEN-LAST:event_findJButton2ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void getAllButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_getAllButton3ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void codediscFilmJTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codediscFilmJTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codediscFilmJTextField3ActionPerformed
+
+    private void findJButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findJButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_findJButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -619,14 +983,31 @@ public class EmployeeHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel GioHang;
     private javax.swing.JButton addOrderJButton;
+    private javax.swing.JComboBox<String> bookJComboBox2;
     private javax.swing.JPanel bookJPanel;
+    private javax.swing.JScrollPane bookjScrollPane;
+    private javax.swing.JTextField codeDiscMusicJTextField2;
     private javax.swing.JTextField codeJTextField;
+    private javax.swing.JTextField codediscFilmJTextField3;
     private javax.swing.JButton deleteOrderJButton;
+    private javax.swing.JScrollPane dircMusicjScrollPane3;
+    private javax.swing.JScrollPane dircMusicjScrollPane4;
+    private javax.swing.JPanel discFilmJPanel;
+    private javax.swing.JComboBox<String> discFilmJcombobox1;
+    private javax.swing.JComboBox<String> discMusicJcombobox;
+    private javax.swing.JPanel discMusicJpanel;
     private javax.swing.JButton findJButton;
+    private javax.swing.JButton findJButton2;
+    private javax.swing.JButton findJButton3;
     private javax.swing.JButton getAllButton;
+    private javax.swing.JButton getAllButton2;
+    private javax.swing.JButton getAllButton3;
     private javax.swing.JTabbedPane homeJTablePane;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -639,16 +1020,16 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTable listBookTable;
+    private javax.swing.JTable listDiscFilmJTable;
+    private javax.swing.JTable listDiscMusicTable1;
     private javax.swing.JButton newOrderJButton;
     private javax.swing.JTextField orderAmoutJTextField;
     private javax.swing.JTable orderJTable;

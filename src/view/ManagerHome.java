@@ -59,9 +59,9 @@ public class ManagerHome extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         getAllButton = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         codeJTextField = new javax.swing.JTextField();
         findJButton = new javax.swing.JButton();
+        bookJComboBox2 = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -123,8 +123,6 @@ public class ManagerHome extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Mã sản phẩm:");
-
         codeJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codeJTextFieldActionPerformed(evt);
@@ -138,14 +136,15 @@ public class ManagerHome extends javax.swing.JFrame {
             }
         });
 
+        bookJComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mã sản phẩm", "Tên sản phẩm" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bookJComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(codeJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(findJButton)
@@ -155,19 +154,19 @@ public class ManagerHome extends javax.swing.JFrame {
                 .addComponent(jButton10)
                 .addGap(18, 18, 18)
                 .addComponent(getAllButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(800, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
                     .addComponent(codeJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(findJButton)
                     .addComponent(jButton9)
                     .addComponent(jButton10)
-                    .addComponent(getAllButton))
+                    .addComponent(getAllButton)
+                    .addComponent(bookJComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -175,7 +174,7 @@ public class ManagerHome extends javax.swing.JFrame {
         bookJPanel.setLayout(bookJPanelLayout);
         bookJPanelLayout.setHorizontalGroup(
             bookJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1512, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1525, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bookJPanelLayout.setVerticalGroup(
@@ -199,14 +198,14 @@ public class ManagerHome extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(148, 148, 148)
                 .addComponent(jButton1)
-                .addContainerGap(1289, Short.MAX_VALUE))
+                .addContainerGap(1302, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jButton1)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addContainerGap(436, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Đĩa nhạc", jPanel2);
@@ -215,11 +214,11 @@ public class ManagerHome extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1512, Short.MAX_VALUE)
+            .addGap(0, 1525, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
         );
 
         homeJTablePane.addTab("Đĩa phim", jPanel3);
@@ -277,7 +276,7 @@ public class ManagerHome extends javax.swing.JFrame {
             .addGroup(employeeJPanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(employeeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1495, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1508, Short.MAX_VALUE)
                     .addGroup(employeeJPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -334,7 +333,7 @@ public class ManagerHome extends javax.swing.JFrame {
                 .addComponent(jButton8)
                 .addGap(101, 101, 101)
                 .addComponent(jButton7)
-                .addContainerGap(860, Short.MAX_VALUE))
+                .addContainerGap(873, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +344,7 @@ public class ManagerHome extends javax.swing.JFrame {
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(424, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Quản lý khách hàng ", jPanel5);
@@ -354,11 +353,11 @@ public class ManagerHome extends javax.swing.JFrame {
         financeJPanel.setLayout(financeJPanelLayout);
         financeJPanelLayout.setHorizontalGroup(
             financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1512, Short.MAX_VALUE)
+            .addGap(0, 1525, Short.MAX_VALUE)
         );
         financeJPanelLayout.setVerticalGroup(
             financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
         );
 
         homeJTablePane.addTab("quản lý tài chính", financeJPanel);
@@ -503,7 +502,16 @@ public class ManagerHome extends javax.swing.JFrame {
         defaultTableModel.addColumn("Category");
         defaultTableModel.addColumn("Publisher");
         defaultTableModel.addColumn("Author");
-
+        
+        if ( bookJComboBox2.getSelectedItem().equals("Tên sản phẩm") ){
+          List<Book> books= productController.getBooksByName(codeJTextField.getText());
+          for(Book book : books){
+        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
+            book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
+        }
+        }
+        else{
+            
         try {
             Book book= productController.getBookByCode(codeJTextField.getText());
         defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),book.getAddDate(),book.getUpdateDate(),book.getUpdater().getId(),
@@ -511,6 +519,10 @@ public class ManagerHome extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Nhập lại mã sản phẩm: ");
         }
+        
+        }  
+          
+
     }//GEN-LAST:event_findJButtonActionPerformed
 
     private void codeJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeJTextFieldActionPerformed
@@ -519,7 +531,10 @@ public class ManagerHome extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-
+ if ( bookJComboBox2.getSelectedItem().equals("Tên sản phẩm") ){
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để chỉnh sửa");
+        }
+        else{
         productController= new ProductController(employee);
         String code= codeJTextField.getText();
         
@@ -529,6 +544,7 @@ public class ManagerHome extends javax.swing.JFrame {
         }
         else{
            JOptionPane.showMessageDialog(null, "Mã sản phẩm chưa tồn tại");
+        }
         }
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -568,7 +584,11 @@ public class ManagerHome extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        productController = new ProductController(employee);
+       if ( String.valueOf(bookJComboBox2.getSelectedItem()).equals("Tên sản phẩm") ){
+          JOptionPane.showMessageDialog(null, "Vui lòng chọn mã sản phẩm để thêm mới");
+        }
+        else{
+         productController = new ProductController(employee);
         if (codeJTextField.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
         }
@@ -577,10 +597,10 @@ public class ManagerHome extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
           }
         else{
-        new BookForm(employee).setVisible(true);
+        new BookForm(codeJTextField.getText(),employee).setVisible(true);
         this.setVisible(false);
+        }   
         }
-        
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -636,6 +656,7 @@ public class ManagerHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> bookJComboBox2;
     private javax.swing.JPanel bookJPanel;
     private javax.swing.JTextField codeJTextField;
     private javax.swing.JPanel employeeJPanel;
@@ -654,7 +675,6 @@ public class ManagerHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
