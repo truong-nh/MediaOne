@@ -10,14 +10,7 @@ package person;
  */
 public class Customer extends Person {
     private int point;
-
-    public Customer(int point, String name, int born, String phone) {
-        super(name, born, phone);
-        this.point = point;
-    }
-
-    public Customer() {
-    }
+    private int id;
 
     public int getPoint() {
         return point;
@@ -26,6 +19,26 @@ public class Customer extends Person {
     public void setPoint(int point) {
         this.point = point;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Customer(int point, int id, String name, int born, String phone) {
+        super(name, born, phone);
+        this.point = point;
+        this.id = id;
+    }
+
+    public Customer() {
+    }
+
+    
+    
      
     
     

@@ -12,7 +12,7 @@ public class Employee extends Person{
     private Account account;
     private int salary;
     private int id;
-
+  
     public Employee(Account account, int salary, int id, String name, int born, String phone) {
         super(name, born, phone);
         this.account = account;

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import person.Account;
+import person.Customer;
 import person.Employee;
 
 /**
@@ -510,48 +511,6 @@ public class DB {
 
     
     // employee
-    public static List<Account> getListAccounts(){
-    List<Account> accounts = new ArrayList<>();
-        Connection connection = JDBCConnection.getJDBCConnection();
-        PreparedStatement pst= null;
-        
-        String sql =" SELECT * FROM account";
-        
-        try {
-            pst= connection.prepareStatement(sql);
-            ResultSet rs= pst.executeQuery();
-            
-            while(rs.next()){
-            Account account= new Account();
-                  
-            account.setUserName(rs.getString("UserName"));
-            account.setPassword(rs.getString("PassWord"));
-            account.setRole(rs.getString("Role"));
-            accounts.add(account);
-        }
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            if (pst != null) {
-                try {
-                    pst.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }        
-        return accounts;
-   
-    }
-    
     public static List<Employee> getListEmployees(){
     List<Employee> employees = new ArrayList<>();
         Connection connection = JDBCConnection.getJDBCConnection();
@@ -881,4 +840,123 @@ public class DB {
         } 
     }
     
+    //customer
+    public static List<Customer> getListCustomers(){
+     List<Customer> customers = new ArrayList<>();
+        Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst= null;
+        
+        String sql =" SELECT * FROM customer";
+        
+        try {
+            pst= connection.prepareStatement(sql);
+            ResultSet rs= pst.executeQuery();
+            
+            while(rs.next()){
+            Customer customer = new Customer();
+            
+            customer.setId(rs.getInt("ID")) ;
+            customer.setName(rs.getString("Name"));
+            customer.setBorn(rs.getInt("born"));
+            customer.setPhone(rs.getString("phone"));
+            customer.setPoint(rs.getInt("point"));
+            
+            customers.add(customer);
+        }
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }        
+        return customers;
+    }
+    
+    public static void addCustomer(Customer customer){
+       Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        String sql = "INSERT INTO customer (ID, Name, born, phone, point) "
+                + "VALUE(?,?,?,?,?)";
+ 
+        try {
+            pst = connection.prepareStatement(sql);
+            pst.setInt(1,customer.getId());
+            pst.setString(2, customer.getName() );
+            pst.setInt(3,customer.getBorn());
+            pst.setString(4,customer.getPhone());
+            pst.setInt(5, customer.getPoint());
+            
+            int rs = pst.executeUpdate();
+            System.out.println(rs);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } 
+    }
+    
+    public static void updateCustomer(String ID,Customer customer){
+       Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        String sql = "UPDATE customer set ID = ?, Name = ?, born = ?, phone = ?, Point = ? WHERE ID  = ? ";
+ 
+        try {
+             pst = connection.prepareStatement(sql);
+            pst.setInt(1,customer.getId());
+            pst.setString(2, customer.getName() );
+            pst.setInt(3,customer.getBorn());
+            pst.setString(4,customer.getPhone());
+            pst.setInt(5, customer.getPoint());
+            
+            pst.setString(6,ID);
+            int rs = pst.executeUpdate();
+            System.out.println(rs);
+             
+             
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } 
+    }
 }

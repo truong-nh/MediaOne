@@ -42,11 +42,126 @@ public class ManagerHome extends javax.swing.JFrame {
     }
     public ManagerHome(Employee employee)  {
         this.employee=employee;
+        productController= new ProductController(employee);
+        employeeController= new EmployeeController(employee);
         initComponents();
         jLabel6.setText("UserName:"+employee.getAccount().getUserName());
         
         ClockThread th= new ClockThread(timeJLabel);
         th.start();
+        DefaultTableModel defaultTableModel;
+     defaultTableModel= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listBookTable.setModel(defaultTableModel);
+        
+        defaultTableModel.addColumn("ID");
+        defaultTableModel.addColumn("Code");
+        defaultTableModel.addColumn("Name");
+        defaultTableModel.addColumn("PurcharPrice");
+        defaultTableModel.addColumn("SalePrice");
+        defaultTableModel.addColumn("Remaining");
+        defaultTableModel.addColumn("AddDate");
+        defaultTableModel.addColumn("UpdateDate");
+        defaultTableModel.addColumn("IdUpdater");
+        defaultTableModel.addColumn("ProductPlacement");
+        defaultTableModel.addColumn("Category");
+        defaultTableModel.addColumn("Publisher");
+        defaultTableModel.addColumn("Author");
+        
+        List<Book> books = productController.getListBook();
+        for(Book book : books){
+        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),formatter.format(book.getAddDate()),formatter.format(book.getUpdateDate()),book.getUpdater().getId(),
+            book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
+        }
+        
+        DefaultTableModel defaultTableMode2;
+     defaultTableMode2= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listDiscMusicTable1.setModel(defaultTableMode2);
+        
+        defaultTableMode2.addColumn("ID");
+        defaultTableMode2.addColumn("Code");
+        defaultTableMode2.addColumn("Name");
+        defaultTableMode2.addColumn("PurcharPrice");
+        defaultTableMode2.addColumn("SalePrice");
+        defaultTableMode2.addColumn("Remaining");
+        defaultTableMode2.addColumn("AddDate");
+        defaultTableMode2.addColumn("UpdateDate");
+        defaultTableMode2.addColumn("IdUpdater");
+        defaultTableMode2.addColumn("ProductPlacement");
+        defaultTableMode2.addColumn("Genre");
+        defaultTableMode2.addColumn("Singer");
+
+        List<DiscMusic> listDiscMusics = productController.getListDiscMusic();
+         for(DiscMusic discMusic: listDiscMusics){
+        defaultTableMode2.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),formatter.format(discMusic.getAddDate()),formatter.format(discMusic.getUpdateDate()),discMusic.getUpdater().getId(),
+            discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
+        }  
+        
+         DefaultTableModel defaultTableModel3;
+     defaultTableModel3= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listDiscMovieJTable.setModel(defaultTableModel3);
+        
+        defaultTableModel3.addColumn("ID");
+        defaultTableModel3.addColumn("Name");
+        defaultTableModel3.addColumn("PurcharPrice");
+        defaultTableModel3.addColumn("SalePrice");
+        defaultTableModel3.addColumn("Remaining");
+        defaultTableModel3.addColumn("AddDate");
+        defaultTableModel3.addColumn("UpdateDate");
+        defaultTableModel3.addColumn("IdUpdater");
+        defaultTableModel3.addColumn("ProductPlacement");
+        defaultTableModel3.addColumn("Genre");
+        defaultTableModel3.addColumn("Length");
+        defaultTableModel3.addColumn("year");
+        defaultTableModel3.addColumn("actor");
+        defaultTableModel3.addColumn("director");
+        
+        
+          List<DiscMovie> discMovies= productController.getListDiscMovie();
+          for(DiscMovie discMovie : discMovies){
+        defaultTableModel3.addRow(new Object[]{discMovie.getId(),discMovie.getCode(),discMovie.getName(),discMovie.getPurchasePrice(),discMovie.getSalePrice(),discMovie.getRemaining(),formatter.format(discMovie.getAddDate()),formatter.format(discMovie.getUpdateDate()),discMovie.getUpdater().getId(),
+            discMovie.getProductPlacement(),discMovie.getGenre(),discMovie.getLength(),discMovie.getYear(),discMovie.getActor(),discMovie.getDirector() });
+        }
+         
+        DefaultTableModel defaultTableModel4;
+        defaultTableModel4= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        } ;
+        listEmployeeJTable.setModel(defaultTableModel4);
+
+        defaultTableModel4.addColumn("ID");
+        defaultTableModel4.addColumn("Name");
+        defaultTableModel4.addColumn("Phone");
+        defaultTableModel4.addColumn("Born");
+        defaultTableModel4.addColumn("Salary");
+        defaultTableModel4.addColumn("Role");
+        defaultTableModel4.addColumn("UserName");
+        defaultTableModel4.addColumn("PassWord");
+        
+
+        List<Employee> employees= employeeController.getListEmployee();
+        for(Employee employee1 : employees){
+            defaultTableModel4.addRow(new Object[]{employee1.getId(),employee1.getName(),employee1.getPhone(),employee1.getBorn(),employee1.getSalary(),employee1.getAccount().getRole(),
+                employee1.getAccount().getUserName(),employee1.getAccount().getPassword()  });
+        }
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -542,6 +657,11 @@ public class ManagerHome extends javax.swing.JFrame {
         homeJTablePane.addTab("quản lý nhân viên", employeeJPanel);
 
         jButton7.setText("Tất cả khách hàng");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số điện thoại", "Họ và tên" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -1109,6 +1229,10 @@ public class ManagerHome extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_findJButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

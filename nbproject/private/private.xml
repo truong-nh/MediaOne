@@ -13,12 +13,14 @@
             <file>file:/D:/codelearn/MediaOne/src/view/employeeform/EmployeeForm.java</file>
             <file>file:/D:/codelearn/MediaOne/src/view/ManagerHome.java</file>
             <file>file:/D:/codelearn/MediaOne/src/view/bookform/BookFormEdit.java</file>
+            <file>file:/D:/codelearn/MediaOne/src/view/discMovieForm/DiscMovieForm.java</file>
             <file>file:/D:/codelearn/MediaOne/src/Product/DiscMovie.java</file>
             <file>file:/D:/codelearn/MediaOne/src/Product/DiscMusic.java</file>
             <file>file:/D:/codelearn/MediaOne/src/constand/Constand.java</file>
             <file>file:/D:/codelearn/MediaOne/src/constand/MySQLConstand.java</file>
             <file>file:/D:/codelearn/MediaOne/src/database/test.java</file>
-            <file>file:/D:/codelearn/MediaOne/src/view/clock/Clock.java</file>
+            <file>file:/D:/codelearn/MediaOne/src/view/discMovieForm/DiscMovieFormEdit.java</file>
+            <file>file:/D:/codelearn/MediaOne/src/Controller/CustomerController.java</file>
             <file>file:/D:/codelearn/MediaOne/src/view/login.java</file>
             <file>file:/D:/codelearn/MediaOne/src/person/Person.java</file>
             <file>file:/D:/codelearn/MediaOne/src/view/employeeform/EmployeeFormEdit.java</file>
@@ -33,8 +35,8 @@
             <file>file:/D:/codelearn/MediaOne/src/mediaone/test.java</file>
             <file>file:/D:/codelearn/MediaOne/src/view/EmployeeHome.java</file>
             <file>file:/D:/codelearn/MediaOne/src/bill/Bill.java</file>
-            <file>file:/D:/codelearn/MediaOne/src/person/Manager.java</file>
             <file>file:/D:/codelearn/MediaOne/src/view/discmusicform/DiscMusicForm.java</file>
+            <file>file:/D:/codelearn/MediaOne/src/person/Manager.java</file>
         </group>
     </open-files>
 </project-private>

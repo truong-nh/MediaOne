@@ -45,6 +45,95 @@ public class EmployeeHome extends javax.swing.JFrame {
         
         ClockThread th= new ClockThread(timeJLabel);
         th.start();
+        
+        DefaultTableModel defaultTableModel;
+     defaultTableModel= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listBookTable.setModel(defaultTableModel);
+        
+        defaultTableModel.addColumn("ID");
+        defaultTableModel.addColumn("Code");
+        defaultTableModel.addColumn("Name");
+        defaultTableModel.addColumn("PurcharPrice");
+        defaultTableModel.addColumn("SalePrice");
+        defaultTableModel.addColumn("Remaining");
+        defaultTableModel.addColumn("AddDate");
+        defaultTableModel.addColumn("UpdateDate");
+        defaultTableModel.addColumn("IdUpdater");
+        defaultTableModel.addColumn("ProductPlacement");
+        defaultTableModel.addColumn("Category");
+        defaultTableModel.addColumn("Publisher");
+        defaultTableModel.addColumn("Author");
+        
+        List<Book> books = productController.getListBook();
+        for(Book book : books){
+        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),formatter.format(book.getAddDate()),formatter.format(book.getUpdateDate()),book.getUpdater().getId(),
+            book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
+        }
+        DefaultTableModel defaultTableMode2;
+     defaultTableMode2= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listDiscMusicTable1.setModel(defaultTableMode2);
+        
+        defaultTableMode2.addColumn("ID");
+        defaultTableMode2.addColumn("Code");
+        defaultTableMode2.addColumn("Name");
+        defaultTableMode2.addColumn("PurcharPrice");
+        defaultTableMode2.addColumn("SalePrice");
+        defaultTableMode2.addColumn("Remaining");
+        defaultTableMode2.addColumn("AddDate");
+        defaultTableMode2.addColumn("UpdateDate");
+        defaultTableMode2.addColumn("IdUpdater");
+        defaultTableMode2.addColumn("ProductPlacement");
+        defaultTableMode2.addColumn("Genre");
+        defaultTableMode2.addColumn("Singer");
+
+        List<DiscMusic> listDiscMusics = productController.getListDiscMusic();
+         for(DiscMusic discMusic: listDiscMusics){
+        defaultTableMode2.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),formatter.format(discMusic.getAddDate()),formatter.format(discMusic.getUpdateDate()),discMusic.getUpdater().getId(),
+            discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
+        }  
+        
+         DefaultTableModel defaultTableModel3;
+     defaultTableModel3= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }         
+        } ; 
+     listDiscMovieJTable.setModel(defaultTableModel3);
+        
+        defaultTableModel3.addColumn("ID");
+        defaultTableModel3.addColumn("Name");
+        defaultTableModel3.addColumn("PurcharPrice");
+        defaultTableModel3.addColumn("SalePrice");
+        defaultTableModel3.addColumn("Remaining");
+        defaultTableModel3.addColumn("AddDate");
+        defaultTableModel3.addColumn("UpdateDate");
+        defaultTableModel3.addColumn("IdUpdater");
+        defaultTableModel3.addColumn("ProductPlacement");
+        defaultTableModel3.addColumn("Genre");
+        defaultTableModel3.addColumn("Length");
+        defaultTableModel3.addColumn("year");
+        defaultTableModel3.addColumn("actor");
+        defaultTableModel3.addColumn("director");
+        
+        
+          List<DiscMovie> discMovies= productController.getListDiscMovie();
+          for(DiscMovie discMovie : discMovies){
+        defaultTableModel3.addRow(new Object[]{discMovie.getId(),discMovie.getCode(),discMovie.getName(),discMovie.getPurchasePrice(),discMovie.getSalePrice(),discMovie.getRemaining(),formatter.format(discMovie.getAddDate()),formatter.format(discMovie.getUpdateDate()),discMovie.getUpdater().getId(),
+            discMovie.getProductPlacement(),discMovie.getGenre(),discMovie.getLength(),discMovie.getYear(),discMovie.getActor(),discMovie.getDirector() });
+        }
+         
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +151,6 @@ public class EmployeeHome extends javax.swing.JFrame {
         listBookTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
-        getAllButton = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         codeJTextField = new javax.swing.JTextField();
         findJButton = new javax.swing.JButton();
@@ -72,7 +160,6 @@ public class EmployeeHome extends javax.swing.JFrame {
         listDiscMusicTable1 = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
-        getAllButton2 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         codeDiscMusicJTextField2 = new javax.swing.JTextField();
         findJButton2 = new javax.swing.JButton();
@@ -82,7 +169,6 @@ public class EmployeeHome extends javax.swing.JFrame {
         listDiscMovieJTable = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jButton15 = new javax.swing.JButton();
-        getAllButton3 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         codediscMovieJTextField3 = new javax.swing.JTextField();
         findJButton3 = new javax.swing.JButton();
@@ -137,13 +223,6 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
-        getAllButton.setText("Lấy tất cả");
-        getAllButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getAllButtonActionPerformed(evt);
-            }
-        });
-
         jButton9.setText("Chỉnh sửa");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,9 +260,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jButton9)
                 .addGap(18, 18, 18)
                 .addComponent(jButton10)
-                .addGap(18, 18, 18)
-                .addComponent(getAllButton)
-                .addContainerGap(836, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,7 +271,6 @@ public class EmployeeHome extends javax.swing.JFrame {
                     .addComponent(findJButton)
                     .addComponent(jButton9)
                     .addComponent(jButton10)
-                    .addComponent(getAllButton)
                     .addComponent(bookJComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -235,13 +311,6 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
-        getAllButton2.setText("Lấy tất cả");
-        getAllButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getAllButton2ActionPerformed(evt);
-            }
-        });
-
         jButton14.setText("Chỉnh sửa");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,9 +348,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jButton14)
                 .addGap(18, 18, 18)
                 .addComponent(jButton13)
-                .addGap(18, 18, 18)
-                .addComponent(getAllButton2)
-                .addContainerGap(836, Short.MAX_VALUE))
+                .addContainerGap(934, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,7 +359,6 @@ public class EmployeeHome extends javax.swing.JFrame {
                     .addComponent(findJButton2)
                     .addComponent(jButton14)
                     .addComponent(jButton13)
-                    .addComponent(getAllButton2)
                     .addComponent(discMusicJcombobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -333,13 +399,6 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
-        getAllButton3.setText("Lấy tất cả");
-        getAllButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                getAllButton3ActionPerformed(evt);
-            }
-        });
-
         jButton16.setText("Chỉnh sửa");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,9 +436,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jButton16)
                 .addGap(18, 18, 18)
                 .addComponent(jButton15)
-                .addGap(18, 18, 18)
-                .addComponent(getAllButton3)
-                .addContainerGap(836, Short.MAX_VALUE))
+                .addContainerGap(934, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,7 +447,6 @@ public class EmployeeHome extends javax.swing.JFrame {
                     .addComponent(findJButton3)
                     .addComponent(jButton16)
                     .addComponent(jButton15)
-                    .addComponent(getAllButton3)
                     .addComponent(discMovieJcombobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -648,39 +704,6 @@ public class EmployeeHome extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void getAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButtonActionPerformed
-        // TODO add your handling code here:
-        productController= new ProductController(employee);
-        DefaultTableModel defaultTableModel;
-     defaultTableModel= new DefaultTableModel(){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }         
-        } ; 
-     listBookTable.setModel(defaultTableModel);
-        
-        defaultTableModel.addColumn("ID");
-        defaultTableModel.addColumn("Code");
-        defaultTableModel.addColumn("Name");
-        defaultTableModel.addColumn("PurcharPrice");
-        defaultTableModel.addColumn("SalePrice");
-        defaultTableModel.addColumn("Remaining");
-        defaultTableModel.addColumn("AddDate");
-        defaultTableModel.addColumn("UpdateDate");
-        defaultTableModel.addColumn("IdUpdater");
-        defaultTableModel.addColumn("ProductPlacement");
-        defaultTableModel.addColumn("Category");
-        defaultTableModel.addColumn("Publisher");
-        defaultTableModel.addColumn("Author");
-        
-        List<Book> books = productController.getListBook();
-        for(Book book : books){
-        defaultTableModel.addRow(new Object[]{book.getId(),book.getCode(),book.getName(),book.getPurchasePrice(),book.getSalePrice(),book.getRemaining(),formatter.format(book.getAddDate()),formatter.format(book.getUpdateDate()),book.getUpdater().getId(),
-            book.getProductPlacement(),book.getCategory(),book.getPublisher(),book.getAuthor()  });
-        }
-    }//GEN-LAST:event_getAllButtonActionPerformed
-
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         if ( bookJComboBox2.getSelectedItem().equals("Tên sản phẩm") ){
@@ -814,42 +837,6 @@ public class EmployeeHome extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton13ActionPerformed
 
-    private void getAllButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButton2ActionPerformed
-        // TODO add your handling code here:
-         productController= new ProductController(employee);
-        DefaultTableModel defaultTableModel;
-     defaultTableModel= new DefaultTableModel(){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }         
-        } ; 
-     listDiscMusicTable1.setModel(defaultTableModel);
-        
-        defaultTableModel.addColumn("ID");
-        defaultTableModel.addColumn("Code");
-        defaultTableModel.addColumn("Name");
-        defaultTableModel.addColumn("PurcharPrice");
-        defaultTableModel.addColumn("SalePrice");
-        defaultTableModel.addColumn("Remaining");
-        defaultTableModel.addColumn("AddDate");
-        defaultTableModel.addColumn("UpdateDate");
-        defaultTableModel.addColumn("IdUpdater");
-        defaultTableModel.addColumn("ProductPlacement");
-        defaultTableModel.addColumn("Genre");
-        defaultTableModel.addColumn("Singer");
-
-        List<DiscMusic> listDiscMusics = productController.getListDiscMusic();
-          
-            
-        
-         for(DiscMusic discMusic: listDiscMusics){
-        defaultTableModel.addRow(new Object[]{discMusic.getId(),discMusic.getCode(),discMusic.getName(),discMusic.getPurchasePrice(),discMusic.getSalePrice(),discMusic.getRemaining(),formatter.format(discMusic.getAddDate()),formatter.format(discMusic.getUpdateDate()),discMusic.getUpdater().getId(),
-            discMusic.getProductPlacement(),discMusic.getGenre(),discMusic.getSinger()  });
-        }
-         
-    }//GEN-LAST:event_getAllButton2ActionPerformed
-
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
         productController= new ProductController(employee);
@@ -946,43 +933,6 @@ public class EmployeeHome extends javax.swing.JFrame {
         }
         }
     }//GEN-LAST:event_jButton15ActionPerformed
-
-    private void getAllButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getAllButton3ActionPerformed
-        // TODO add your handling code here:
-        productController= new ProductController(employee);
-        DefaultTableModel defaultTableModel;
-     defaultTableModel= new DefaultTableModel(){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }         
-        } ; 
-     listDiscMovieJTable.setModel(defaultTableModel);
-        
-        defaultTableModel.addColumn("ID");
-        defaultTableModel.addColumn("Code");
-        defaultTableModel.addColumn("Name");
-        defaultTableModel.addColumn("PurcharPrice");
-        defaultTableModel.addColumn("SalePrice");
-        defaultTableModel.addColumn("Remaining");
-        defaultTableModel.addColumn("AddDate");
-        defaultTableModel.addColumn("UpdateDate");
-        defaultTableModel.addColumn("IdUpdater");
-        defaultTableModel.addColumn("ProductPlacement");
-        defaultTableModel.addColumn("Genre");
-        defaultTableModel.addColumn("Length");
-        defaultTableModel.addColumn("year");
-        defaultTableModel.addColumn("actor");
-        defaultTableModel.addColumn("director");
-        
-        
-          List<DiscMovie> discMovies= productController.getListDiscMovie();
-          for(DiscMovie discMovie : discMovies){
-        defaultTableModel.addRow(new Object[]{discMovie.getId(),discMovie.getCode(),discMovie.getName(),discMovie.getPurchasePrice(),discMovie.getSalePrice(),discMovie.getRemaining(),formatter.format(discMovie.getAddDate()),formatter.format(discMovie.getUpdateDate()),discMovie.getUpdater().getId(),
-            discMovie.getProductPlacement(),discMovie.getGenre(),discMovie.getLength(),discMovie.getYear(),discMovie.getActor(),discMovie.getDirector() });
-        }
-         
-    }//GEN-LAST:event_getAllButton3ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
@@ -1109,9 +1059,6 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JButton findJButton;
     private javax.swing.JButton findJButton2;
     private javax.swing.JButton findJButton3;
-    private javax.swing.JButton getAllButton;
-    private javax.swing.JButton getAllButton2;
-    private javax.swing.JButton getAllButton3;
     private javax.swing.JTabbedPane homeJTablePane;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton13;

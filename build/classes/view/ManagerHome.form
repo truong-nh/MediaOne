@@ -720,6 +720,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="T&#x1ea5;t c&#x1ea3; kh&#xe1;ch h&#xe0;ng"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton7ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField3">
             </Component>

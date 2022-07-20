@@ -10,6 +10,7 @@ import Product.DiscMusic;
 import bill.Bill;
 import database.DB;
 import java.util.List;
+import person.Customer;
 import person.Employee;
 
 /**
@@ -22,6 +23,9 @@ public class MediaOne {
     private static List<Bill> listBill;
     private static List<DiscMusic> listDiscMusics;
     private static List<DiscMovie> listDiscMovies;
+    private static List<Customer>  listCustomers;
+
+    
     
     public MediaOne() {
         listBook = DB.getListBook();
@@ -29,6 +33,7 @@ public class MediaOne {
         listBill= DB.getListBills();
         listDiscMusics= DB.getListDiscMusics();
         listDiscMovies=DB.getliDiscMovie();
+        listCustomers=DB.getListCustomers();
     }
 
     public static List<Bill> getListBill() {
@@ -76,5 +81,15 @@ public class MediaOne {
     public static void setListDiscMovies(List<DiscMovie> listDiscMovies) {
         MediaOne.listDiscMovies = listDiscMovies;
     }
+    //customer
+
+    public static List<Customer> getListCustomers() {
+        return listCustomers;
+    }
+
+    public static void setListCustomers(List<Customer> listCustomers) {
+        MediaOne.listCustomers = listCustomers;
+    }
+    
     
 }

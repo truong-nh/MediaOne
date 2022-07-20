@@ -11,6 +11,7 @@ import database.DB;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import mediaone.MediaOne;
+import person.Customer;
 import person.Employee;
 
 /**
@@ -24,7 +25,7 @@ public class test {
         ProductController productController= new ProductController(employee);
         EmployeeController employeeController= new EmployeeController(employee);
                     BillController billController= new BillController(employee);
-
+        CustomerController customerController= new CustomerController(employee);
         Date date = new Date();
         SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String strDate = formatter.format(date);
@@ -53,7 +54,10 @@ public class test {
 //                 }
 //              DiscMovie discMovie1 = new DiscMovie("2", 3, 3, "2", "2", "2", "2", "2", 3, 3, 3, date, date, employee, "2");
    //          productController.sellDiscMovie("2", 4);
-              System.out.println(productController.getDiscMovieByCode("2").getRemaining());
+              //System.out.println(productController.getDiscMovieByCode("2").getRemaining());
+     //         System.out.println(customerController.getCustomerByPhone("0949144961").size());
+              CustomerController customerController1= new CustomerController(employee);
+              customerController.addCustomer("nguyen", "20002", "10123123");
 }
     
 }
