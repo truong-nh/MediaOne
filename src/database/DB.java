@@ -11,6 +11,7 @@ import Product.Product;
 import bill.Bill;
 import bill.BillType;
 import bill.BusinessReport;
+import bill.Finance;
 import config.JDBCConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -999,21 +1001,22 @@ public class DB {
         return 1;
     }
 
-    public static List<BusinessReport> getBusinessReport(long fromDate, long toDate){
+    public static BusinessReport getBusinessReport(long fromDate, long toDate){
         Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst = null;
         String sql = "SELECT * FROM finance\n"
             + "WHERE time < ? \n"
             + "AND time > ?\n";
-        List<BusinessReport> reportList = new ArrayList<>();
+        List<String> reportList = new ArrayList<>();
         try {
             pst = connection.prepareStatement(sql);
             pst.setLong(1, toDate);
             pst.setLong(2, fromDate);
             ResultSet resultSet = pst.executeQuery();
             while(resultSet.next()) {
-                BusinessReport report = new BusinessReport();
+                reportList.add(resultSet.getString("description"));
             }
+            return calcBusinessReport(reportList);
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -1032,6 +1035,28 @@ public class DB {
                 }
             }
         }
+        return null;
+    }
+
+    private static BusinessReport calcBusinessReport(List<String> listReports){
+        BusinessReport result = new BusinessReport();
+        for (String report : listReports){
+            String[] dataGot = report.split("_");
+            List<String> dataLists = Arrays.asList(dataGot);
+            if (dataLists.size() ==2 ){
+                if (BillType.BUYING.name().equals(dataLists.get(1))) {
+                    result.setTotalPurchase(result.getTotalPurchase()
+                        + Long.parseLong(dataLists.get(0)));
+                } else if (BillType.SELLING.name().equals(dataLists.get(1))) {
+                    result.setTotalSell(result.getTotalSell()
+                        + Long.parseLong(dataLists.get(0)));
+                } else if ("OTHER".equals(dataLists.get(1))){
+                    result.setTotalOther(result.getTotalOther()
+                        + Long.parseLong(dataLists.get(0)));
+                }
+            }
+        }
+        return result;
     }
 
     public static void saveFinance(long totalValue, Bill bill, long cost) {
