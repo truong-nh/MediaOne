@@ -4,15 +4,18 @@
  */
 package view.bill;
 
+import Controller.CustomerController;
 import Controller.BillController;
 import Controller.ProductController;
 import Product.Product;
 import bill.Bill;
+import bill.BillType;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import person.Customer;
 import person.Employee;
 
 /**
@@ -22,6 +25,7 @@ import person.Employee;
 public class OrderBill extends javax.swing.JFrame {
     ProductController productController;
     BillController billController;
+    CustomerController customerController;
     Employee employee;
     Map<Product, Integer> productMaps =  new LinkedHashMap<Product, Integer>( );
     /**
@@ -29,6 +33,7 @@ public class OrderBill extends javax.swing.JFrame {
      */
     public OrderBill(Employee employee) {
         initComponents();
+        this.employee= employee;
         billController= new BillController(employee);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         nhanVienJLabel1.setText("Nhân viên: " + employee.getAccount().getUserName() );
@@ -364,6 +369,22 @@ public class OrderBill extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        try {
+            billController= new BillController(employee);
+        customerController= new CustomerController(employee);
+        
+        Customer customer = customerController.getCustomerByPhone(phoneCustomerOrderJTextField2.getText());
+        Bill bill=billController.addBill(customer, employee, BillType.SELLING);
+        
+        billController.addItemToBill(bill, productMaps);
+        billController.calculateBill(bill);
+        billController.pay(bill);
+        
+        this.setVisible(false);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

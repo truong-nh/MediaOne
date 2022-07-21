@@ -7,9 +7,14 @@ package Controller;
 import Product.Book;
 import Product.DiscMovie;
 import Product.DiscMusic;
+import Product.Product;
+import bill.Bill;
+import bill.BillType;
 import database.DB;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import mediaone.MediaOne;
 import person.Customer;
 import person.Employee;
@@ -57,7 +62,13 @@ public class test {
               //System.out.println(productController.getDiscMovieByCode("2").getRemaining());
      //         System.out.println(customerController.getCustomerByPhone("0949144961").size());
               CustomerController customerController1= new CustomerController(employee);
-              customerController.addCustomer("nguyen", "20002", "10123123");
+              Customer customer = customerController.getCustomerByPhone("0");
+              Book book11= productController.getBookByCode("b6");
+              Employee employee1= employeeController.getEmployeeByUserName("truong");
+              Bill bill = new Bill();
+              Map<Product, Integer> productMaps = new LinkedHashMap<Product, Integer>() ;
+              productMaps.put(book11, 1);
+              bill= billController.addBill(customer, employee, BillType.BUYING);
 }
     
 }

@@ -4,12 +4,21 @@
  */
 package database;
 
+import Controller.BillController;
+import Controller.CustomerController;
+import Controller.EmployeeController;
+import Controller.ProductController;
 import Product.Book;
 import Product.DiscMovie;
 import Product.DiscMusic;
+import Product.Product;
 import bill.Bill;
+import bill.BillType;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import mediaone.MediaOne;
 import person.Account;
 import person.Customer;
 import person.Employee;
@@ -29,7 +38,7 @@ public class test {
 //            System.out.println(book.getUpdater().getName());
 //        }
        Employee employee= DB.getEmployee("1");
-        
+       MediaOne mediaOne= new MediaOne();
       // book c= new Book(category, publisher, author, id, code, name, 0, 0, 0, addDate, updateDate, employee, productPlacement)
        Book  book = new Book("category", "publisher", "author", "1", "code1", "name1", 2003, 0, 0, date, date, employee, "productPlacement");
       //db.addBook(book);
@@ -52,7 +61,18 @@ public class test {
        //  DB.updateCustomer("3", customer1);
       //  System.out.println(DB.getListCustomers().size()); 
       //  Bill bill = new Bill();
-      //  DB.saveFinance(12, bill, 0);
+        ProductController productController= new ProductController(employee);
+        EmployeeController employeeController= new EmployeeController(employee);
+        BillController billController= new BillController(employee);
+      Book book11= productController.getBookByCode("b6");
+      CustomerController customerController= new CustomerController(employee);
+              Customer customer = customerController.getCustomerByPhone("0");
+              Employee employee1= employeeController.getEmployeeByUserName("truong");
+              Bill bill = new Bill();
+              Map<Product, Integer> productMaps = new LinkedHashMap<Product, Integer>() ;
+              productMaps.put(book11, 1);
+              bill= billController.addBill(customer, employee, BillType.BUYING);
+     //   DB.saveFinance(11112, bill, 0);
         
     } 
 }

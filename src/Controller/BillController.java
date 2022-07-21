@@ -63,18 +63,6 @@ public class BillController {
      * @return
      */
     
-    // chỉnh sửa số lượng
-//    public Map<Product, Integer> addItemToMap(Map<Product, Integer> productMaps,String code,int amount){
-//        Set<Product> products = productMaps.keySet();
-//        for(Product product: products){
-//            if(product.getCode().equals(code)){
-//                System.out.println("sản phẩm đã tồn tại");
-//                return productMaps;
-//            }
-//        }
-//        
-//        return productMaps;
-//    } 
     
     public Bill addItemToBill(Bill bill, Map<Product, Integer> productMaps){
         bill.setProductMaps(productMaps);

@@ -241,7 +241,7 @@ public class ManagerHome extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         listEmployeeJTable = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
+        customerjPanel = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         phonejTextField3 = new javax.swing.JTextField();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -249,6 +249,9 @@ public class ManagerHome extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         customerJTable1 = new javax.swing.JTable();
         financeJPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -333,7 +336,7 @@ public class ManagerHome extends javax.swing.JFrame {
         bookJPanel.setLayout(bookJPanelLayout);
         bookJPanelLayout.setHorizontalGroup(
             bookJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1596, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1584, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bookJPanelLayout.setVerticalGroup(
@@ -438,7 +441,7 @@ public class ManagerHome extends javax.swing.JFrame {
         discMusicjPanel.setLayout(discMusicjPanelLayout);
         discMusicjPanelLayout.setHorizontalGroup(
             discMusicjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1596, Short.MAX_VALUE)
+            .addGap(0, 1584, Short.MAX_VALUE)
             .addGroup(discMusicjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(discMusicjPanelLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -447,7 +450,7 @@ public class ManagerHome extends javax.swing.JFrame {
         );
         discMusicjPanelLayout.setVerticalGroup(
             discMusicjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+            .addGap(0, 487, Short.MAX_VALUE)
             .addGroup(discMusicjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(discMusicjPanelLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -547,7 +550,7 @@ public class ManagerHome extends javax.swing.JFrame {
         discMovieJPanel3.setLayout(discMovieJPanel3Layout);
         discMovieJPanel3Layout.setHorizontalGroup(
             discMovieJPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1596, Short.MAX_VALUE)
+            .addGap(0, 1584, Short.MAX_VALUE)
             .addGroup(discMovieJPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(discMovieJPanel3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -612,7 +615,7 @@ public class ManagerHome extends javax.swing.JFrame {
             .addGroup(employeeJPanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(employeeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1579, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1567, Short.MAX_VALUE)
                     .addGroup(employeeJPanelLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -623,7 +626,7 @@ public class ManagerHome extends javax.swing.JFrame {
                         .addComponent(jButton11)
                         .addGap(68, 68, 68)
                         .addComponent(jButton12)
-                        .addGap(629, 971, Short.MAX_VALUE))))
+                        .addGap(629, 959, Short.MAX_VALUE))))
         );
         employeeJPanelLayout.setVerticalGroup(
             employeeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -671,15 +674,15 @@ public class ManagerHome extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(customerJTable1);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout customerjPanelLayout = new javax.swing.GroupLayout(customerjPanel);
+        customerjPanel.setLayout(customerjPanelLayout);
+        customerjPanelLayout.setHorizontalGroup(
+            customerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerjPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(customerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addGroup(customerjPanelLayout.createSequentialGroup()
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(phonejTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -687,34 +690,55 @@ public class ManagerHome extends javax.swing.JFrame {
                         .addComponent(jButton8)
                         .addGap(101, 101, 101)
                         .addComponent(jButton7)
-                        .addGap(0, 926, Short.MAX_VALUE)))
+                        .addGap(0, 914, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        customerjPanelLayout.setVerticalGroup(
+            customerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerjPanelLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(customerjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton7)
                     .addComponent(phonejTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
-        homeJTablePane.addTab("Quản lý khách hàng ", jPanel5);
+        homeJTablePane.addTab("Quản lý khách hàng ", customerjPanel);
+
+        jLabel1.setText("Báo cáo tài chính");
+
+        jLabel2.setText("Ngày bắt đầu");
+
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1661080260000L), new java.util.Date(1658401860000L), new java.util.Date(1763723460000L), java.util.Calendar.DAY_OF_WEEK_IN_MONTH));
 
         javax.swing.GroupLayout financeJPanelLayout = new javax.swing.GroupLayout(financeJPanel);
         financeJPanel.setLayout(financeJPanelLayout);
         financeJPanelLayout.setHorizontalGroup(
             financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1596, Short.MAX_VALUE)
+            .addGroup(financeJPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(financeJPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1257, Short.MAX_VALUE))
         );
         financeJPanelLayout.setVerticalGroup(
             financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
+            .addGroup(financeJPanelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(408, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("quản lý tài chính", financeJPanel);
@@ -1158,6 +1182,7 @@ public class ManagerHome extends javax.swing.JFrame {
     private javax.swing.JTextField codeJTextField;
     private javax.swing.JTextField codediscMovieJTextField3;
     private javax.swing.JTable customerJTable1;
+    private javax.swing.JPanel customerjPanel;
     private javax.swing.JScrollPane dircMusicjScrollPane3;
     private javax.swing.JPanel discMovieJPanel;
     private javax.swing.JPanel discMovieJPanel3;
@@ -1184,15 +1209,17 @@ public class ManagerHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable listBookTable;
     private javax.swing.JTable listDiscMovieJTable;
     private javax.swing.JTable listDiscMusicTable1;
