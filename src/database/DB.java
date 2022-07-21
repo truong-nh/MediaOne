@@ -199,7 +199,7 @@ public class DB {
         Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst= null;
         
-        String sql =" SELECT * FROM DiscMusic";
+        String sql =" SELECT * FROM discmusic";
         
         try {
             pst= connection.prepareStatement(sql);
@@ -355,7 +355,7 @@ public class DB {
         Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst= null;
         
-        String sql =" SELECT * FROM discMovie";
+        String sql =" SELECT * FROM discmovie";
         
         try {
             pst= connection.prepareStatement(sql);
@@ -523,7 +523,7 @@ public class DB {
         Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst= null;
         
-        String sql =" SELECT * FROM Employee   ";
+        String sql =" SELECT * FROM employee";
         
         try {
             pst= connection.prepareStatement(sql);
@@ -922,24 +922,26 @@ public class DB {
        Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst = null;
         PreparedStatement pst2 = null;
-        String sqlBill = "INSERT INTO bill (ID, date, type, value, creator, customer) "
-                + "VALUE(?,?,?,?,?,?)";
-        String sqlBillProduct = "INSERT into BILL_PRODUCT(bill_id, product_code, amount)"
+        String sqlBill = "INSERT INTO bill (date, type, value, creator, customer) "
+                + "VALUE(?,?,?,?,?)";
+        String sqlBillProduct = "INSERT into bill_product(bill_id, product_code, amount)"
             + "VALUE(?,?,?)";
         try {
             pst = connection.prepareStatement(sqlBill);
             pst2 = connection.prepareStatement(sqlBillProduct);
-            pst.setInt(1, bill.getId());
-            Date date = new Date();
-            pst.setLong(2, bill.getTime());
-            pst.setString(3, bill.getType().name());
-            pst.setInt(4, (int) bill.getValue());
-            pst.setString(5, String.valueOf(bill.getEmployee().getId()));
-            pst.setString(6, bill.getCustomer().getPhone());
+            pst.setLong(1, bill.getTime());
+            pst.setString(2, bill.getType().name());
+            pst.setInt(3, (int) bill.getValue());
+            pst.setString(4, String.valueOf(bill.getEmployee().getId()));
+            if (bill.getCustomer()== null){
+                pst.setString(5, "0");
+            } else {
+                pst.setString(5, bill.getCustomer().getPhone());
+            }
 
-            ResultSet rs = pst.executeQuery();
+            int rs = pst.executeUpdate();
             System.out.println(rs);
-            int billId = rs.getInt("id");
+            int billId = rs;
             pst2.setInt(1, billId);
             Map<Product, Integer> maps = bill.getProductMaps();
             Set<Product> products = maps.keySet();
@@ -981,8 +983,10 @@ public class DB {
             pst = connection.prepareStatement(sql);
             pst.setLong(1, time);
             ResultSet resultSet = pst.executeQuery();
-            long result = resultSet.getLong("total_value");
-            return result;
+            while (resultSet.next()) {
+                long result = resultSet.getLong("total_value");
+                return result;
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
@@ -1079,7 +1083,7 @@ public class DB {
                 pst.setString(3, String.valueOf(bill.getValue()).concat("_")
                     .concat(bill.getType().name()));
             }
-            ResultSet resultSet = pst.executeQuery();
+            int rs = pst.executeUpdate();
 
         } catch (Exception ex) {
             ex.printStackTrace();
