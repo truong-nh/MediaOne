@@ -21,6 +21,14 @@ public class CustomerController {
     public CustomerController(Employee employee) {
         this.employee = employee;
     }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
     
     public List<Customer> getListCustomer(){
        return MediaOne.getListCustomers();
