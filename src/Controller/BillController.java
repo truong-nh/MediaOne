@@ -124,6 +124,7 @@ public class BillController {
      */
     public boolean pay(Bill bill){
         long moneyEnable = DB.getFinance(new Date().getTime());
+        DB.saveBill(bill);
         if (BillType.BUYING.equals(bill.getType())){
             if (moneyEnable > bill.getValue()) {
                 DB.saveFinance(moneyEnable - bill.getValue(), bill, 0);
