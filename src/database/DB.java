@@ -10,6 +10,7 @@ import Product.DiscMusic;
 import Product.Product;
 import bill.Bill;
 import bill.BillType;
+import bill.BusinessReport;
 import config.JDBCConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -968,11 +969,12 @@ public class DB {
         Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst = null;
         String sql = "SELECT * FROM finance\n"
-            + "WHERE time < time \n"
+            + "WHERE time < ? \n"
             + "ORDER BY time DESC\n"
             + "LIMIT 1";
         try {
             pst = connection.prepareStatement(sql);
+            pst.setLong(1, time);
             ResultSet resultSet = pst.executeQuery();
             long result = resultSet.getLong("total_value");
             return result;
@@ -995,6 +997,41 @@ public class DB {
             }
         }
         return 1;
+    }
+
+    public static List<BusinessReport> getBusinessReport(long fromDate, long toDate){
+        Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        String sql = "SELECT * FROM finance\n"
+            + "WHERE time < ? \n"
+            + "AND time > ?\n";
+        List<BusinessReport> reportList = new ArrayList<>();
+        try {
+            pst = connection.prepareStatement(sql);
+            pst.setLong(1, toDate);
+            pst.setLong(2, fromDate);
+            ResultSet resultSet = pst.executeQuery();
+            while(resultSet.next()) {
+                BusinessReport report = new BusinessReport();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
     }
 
     public static void saveFinance(long totalValue, Bill bill, long cost) {
