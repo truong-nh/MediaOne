@@ -4,6 +4,7 @@
  */
 package view;
 
+import Controller.BillController;
 import Controller.CustomerController;
 import view.bookform.BookFormEdit;
 import view.bookform.BookForm;
@@ -12,6 +13,7 @@ import Controller.ProductController;
 import Product.Book;
 import Product.DiscMovie;
 import Product.DiscMusic;
+import bill.Bill;
 import java.awt.HeadlessException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import person.Customer;
 import person.Employee;
+import view.bill.OrderBill;
 import view.customerform.CustomerForm;
 import view.discMovieForm.DiscMovieForm;
 import view.discMovieForm.DiscMovieFormEdit;
@@ -33,6 +36,7 @@ import view.discmusicform.DiscMusicFormEdit;
 public class EmployeeHome extends javax.swing.JFrame {
     ProductController productController;
     CustomerController customerController;
+    BillController billController;
     Employee employee;
     /**
      * Creates new form EmployeeHome
@@ -159,6 +163,23 @@ public class EmployeeHome extends javax.swing.JFrame {
         
           }
         
+          DefaultTableModel defaultTableModel6;
+        defaultTableModel6 = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        } ;
+        orderJTable.setModel(defaultTableModel6);
+       
+       // defaultTableModel6.addColumn("ID");
+        defaultTableModel6.addColumn("Mã sản phẩm");
+        defaultTableModel6.addColumn("Tên sản phẩm");
+        defaultTableModel6.addColumn("Số lượng");
+        defaultTableModel6.addColumn("Đơn giá");
+        defaultTableModel6.addColumn("Thành tiền");
+          
+          
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -198,9 +219,16 @@ public class EmployeeHome extends javax.swing.JFrame {
         codediscMovieJTextField3 = new javax.swing.JTextField();
         findJButton3 = new javax.swing.JButton();
         discMovieJcombobox1 = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        jButton3 = new javax.swing.JButton();
+        phonejTextField = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        customerJTable1 = new javax.swing.JTable();
         GioHang = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        phoneCustomerOrderJTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         ordercodeJTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -214,13 +242,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         newOrderJButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        phonejTextField = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        customerJTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -306,7 +328,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         bookJPanel.setLayout(bookJPanelLayout);
         bookJPanelLayout.setHorizontalGroup(
             bookJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bookjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1584, Short.MAX_VALUE)
+            .addComponent(bookjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1598, Short.MAX_VALUE)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         bookJPanelLayout.setVerticalGroup(
@@ -315,7 +337,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(bookjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                .addComponent(bookjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Sách", bookJPanel);
@@ -374,7 +396,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jButton14)
                 .addGap(18, 18, 18)
                 .addComponent(jButton13)
-                .addContainerGap(934, Short.MAX_VALUE))
+                .addContainerGap(948, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,7 +424,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(dircMusicjScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                .addComponent(dircMusicjScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Đĩa nhạc", discMusicJpanel);
@@ -461,7 +483,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jButton16)
                 .addGap(18, 18, 18)
                 .addComponent(jButton15)
-                .addContainerGap(934, Short.MAX_VALUE))
+                .addContainerGap(948, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -492,16 +514,80 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(discMoviejScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
+                .addComponent(discMoviejScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Đĩa phim", discMovieJPanel);
 
+        jButton3.setText("Tạo mới khách hàng");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Tra thông tin");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Số điện thoại :");
+
+        customerJTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        customerJTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane2.setViewportView(customerJTable1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jButton6)
+                .addGap(76, 76, 76)
+                .addComponent(jButton3)
+                .addContainerGap(959, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6)
+                    .addComponent(jLabel1))
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE))
+        );
+
+        homeJTablePane.addTab("Khách hàng", jPanel1);
+
         jLabel2.setText("Số điện thoại khách hàng");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        phoneCustomerOrderJTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                phoneCustomerOrderJTextField2ActionPerformed(evt);
             }
         });
 
@@ -560,14 +646,16 @@ public class EmployeeHome extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Thanh toán");
+
         javax.swing.GroupLayout GioHangLayout = new javax.swing.GroupLayout(GioHang);
         GioHang.setLayout(GioHangLayout);
         GioHangLayout.setHorizontalGroup(
             GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(GioHangLayout.createSequentialGroup()
-                .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(GioHangLayout.createSequentialGroup()
+                .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, GioHangLayout.createSequentialGroup()
                         .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(GioHangLayout.createSequentialGroup()
                                 .addGap(41, 41, 41)
@@ -590,10 +678,12 @@ public class EmployeeHome extends javax.swing.JFrame {
                                 .addComponent(deleteOrderJButton)
                                 .addGap(107, 107, 107)
                                 .addComponent(newOrderJButton))
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(phoneCustomerOrderJTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GioHangLayout.createSequentialGroup()
-                        .addGap(0, 1009, Short.MAX_VALUE)
+                    .addGroup(GioHangLayout.createSequentialGroup()
+                        .addGap(301, 301, 301)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 633, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addGap(260, 260, 260)
                         .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,7 +697,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(phoneCustomerOrderJTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -625,77 +715,15 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGap(7, 7, 7)
-                .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(GioHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Giỏ Hàng", GioHang);
-
-        jButton3.setText("Tạo mới khách hàng");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setText("Tra thông tin");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Số điện thoại :");
-
-        customerJTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        customerJTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane2.setViewportView(customerJTable1);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton6)
-                .addGap(76, 76, 76)
-                .addComponent(jButton3)
-                .addContainerGap(945, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
-                    .addComponent(jLabel1))
-                .addGap(44, 44, 44)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
-        );
-
-        homeJTablePane.addTab("Khách hàng", jPanel1);
 
         jLabel6.setText("Nhân viên:");
 
@@ -724,7 +752,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(timeJLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(homeJTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 383, Short.MAX_VALUE))
+                .addComponent(homeJTablePane))
         );
 
         pack();
@@ -825,9 +853,9 @@ public class EmployeeHome extends javax.swing.JFrame {
 
     }//GEN-LAST:event_findJButtonActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void phoneCustomerOrderJTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneCustomerOrderJTextField2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_phoneCustomerOrderJTextField2ActionPerformed
 
     private void ordercodeJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordercodeJTextFieldActionPerformed
         // TODO add your handling code here:
@@ -847,10 +875,9 @@ public class EmployeeHome extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_deleteOrderJButtonActionPerformed
-
     private void newOrderJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newOrderJButtonActionPerformed
         // TODO add your handling code here:
-        
+       new OrderBill(employee).setVisible(true);
     }//GEN-LAST:event_newOrderJButtonActionPerformed
 
     private void homeJTablePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeJTablePaneMouseClicked
@@ -1050,7 +1077,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         
         }  
     }//GEN-LAST:event_findJButton3ActionPerformed
-
+    
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
          customerController= new CustomerController(employee);
@@ -1154,6 +1181,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JButton findJButton2;
     private javax.swing.JButton findJButton3;
     private javax.swing.JTabbedPane homeJTablePane;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -1177,7 +1205,6 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable listBookTable;
     private javax.swing.JTable listDiscMovieJTable;
     private javax.swing.JTable listDiscMusicTable1;
@@ -1185,6 +1212,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JTextField orderAmoutJTextField;
     private javax.swing.JTable orderJTable;
     private javax.swing.JTextField ordercodeJTextField;
+    private javax.swing.JTextField phoneCustomerOrderJTextField2;
     private javax.swing.JTextField phonejTextField;
     private javax.swing.JLabel timeJLabel;
     // End of variables declaration//GEN-END:variables

@@ -30,6 +30,7 @@ public class DiscMusicForm extends javax.swing.JFrame {
      */
     public DiscMusicForm(String code,Employee employee) {
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         productController = new ProductController(employee);
         codeJTextField.setText(code);
         codeJTextField.setEditable(false);

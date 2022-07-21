@@ -24,6 +24,7 @@ public class DiscMusicFormEdit extends javax.swing.JFrame {
      */
     public DiscMusicFormEdit(DiscMusic disc,Employee employee) {
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         productController = new ProductController(employee);
        nameJTextField.setText(disc.getName());
        nameJTextField.setEditable(false);

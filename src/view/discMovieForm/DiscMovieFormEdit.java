@@ -22,6 +22,7 @@ public class DiscMovieFormEdit extends javax.swing.JFrame {
      */
     public DiscMovieFormEdit(DiscMovie discMovie,Employee employee) {
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         productController = new ProductController(employee);
        nameJTextField.setText(discMovie.getName());
        nameJTextField.setEditable(false);

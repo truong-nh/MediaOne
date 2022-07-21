@@ -21,6 +21,7 @@ public class BookFormEdit extends javax.swing.JFrame {
      */
     public BookFormEdit(Book book,Employee employee) {
         initComponents();
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         productController = new ProductController(employee);
        nameJTextField.setText(book.getName());
        nameJTextField.setEditable(false);

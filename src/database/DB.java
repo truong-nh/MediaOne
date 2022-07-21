@@ -744,105 +744,7 @@ public class DB {
     
     
     
-    ///bill
-    public static List<Bill> getListBills(){
-      List<Bill> bills = new ArrayList<>();
-        Connection connection = JDBCConnection.getJDBCConnection();
-        PreparedStatement pst= null;
-
-        String sql =" SELECT * FROM bill";
-
-        try {
-            pst= connection.prepareStatement(sql);
-            ResultSet rs= pst.executeQuery();
-
-            while(rs.next()){
-            Bill bill = new Bill();
-            Employee creator = DB.getEmployee(rs.getString("creator"));
-
-
-            bill.setTime(rs.getTimestamp("date").getTime()); ;
-            bill.setType(BillType.valueOf(rs.getString("type")));
-            bill.setId(rs.getInt("id"));
-            bill.setValue(rs.getInt("value"));
-            bill.setEmployee(creator);
-//            bill.setCustomer(rs.getString("note"));
-
-            bills.add(bill);
-        }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            if (pst != null) {
-                try {
-                    pst.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        }
-        return bills;
-
-    }
     
-    public static void saveBill(Bill bill){
-       Connection connection = JDBCConnection.getJDBCConnection();
-        PreparedStatement pst = null;
-        PreparedStatement pst2 = null;
-        String sqlBill = "INSERT INTO bill (ID, date, type, value, creator, customer) "
-                + "VALUE(?,?,?,?,?,?)";
-        String sqlBillProduct = "INSERT into BILL_PRODUCT(bill_id, product_code, amount)"
-            + "VALUE(?,?,?)";
-        try {
-            pst = connection.prepareStatement(sqlBill);
-            pst2 = connection.prepareStatement(sqlBillProduct);
-            pst.setInt(1, bill.getId());
-            Date date = new Date();
-            pst.setLong(2, bill.getTime());
-            pst.setString(3, bill.getType().name());
-            pst.setInt(4, (int) bill.getValue());
-            pst.setString(5, String.valueOf(bill.getEmployee().getId()));
-            pst.setString(6, bill.getCustomer().getPhone());
-
-            ResultSet rs = pst.executeQuery();
-            System.out.println(rs);
-            int billId = rs.getInt("id");
-            pst2.setInt(1, billId);
-            Map<Product, Integer> maps = bill.getProductMaps();
-            Set<Product> products = maps.keySet();
-            for (Product product : products){
-                pst2.setString(2, product.getCode());
-                pst2.setInt(3, maps.get(product));
-                pst2.execute();
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        } finally {
-            if (pst != null) {
-                try {
-                    pst.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
-            }
-        } 
-    }
     
     //customer
     public static List<Customer> getListCustomers(){
@@ -963,7 +865,108 @@ public class DB {
             }
         } 
     }
+     
+    ///bill
+    public static List<Bill> getListBills(){
+      List<Bill> bills = new ArrayList<>();
+        Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst= null;
 
+        String sql =" SELECT * FROM bill";
+
+        try {
+            pst= connection.prepareStatement(sql);
+            ResultSet rs= pst.executeQuery();
+
+            while(rs.next()){
+            Bill bill = new Bill();
+            Employee creator = DB.getEmployee(rs.getString("creator"));
+
+
+            bill.setTime(rs.getTimestamp("date").getTime()); ;
+            bill.setType(BillType.valueOf(rs.getString("type")));
+            bill.setId(rs.getInt("id"));
+            bill.setValue(rs.getInt("value"));
+            bill.setEmployee(creator);
+//            bill.setCustomer(rs.getString("note"));
+
+            bills.add(bill);
+        }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return bills;
+
+    }
+    
+    public static void saveBill(Bill bill){
+       Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+        PreparedStatement pst2 = null;
+        String sqlBill = "INSERT INTO bill (ID, date, type, value, creator, customer) "
+                + "VALUE(?,?,?,?,?,?)";
+        String sqlBillProduct = "INSERT into BILL_PRODUCT(bill_id, product_code, amount)"
+            + "VALUE(?,?,?)";
+        try {
+            pst = connection.prepareStatement(sqlBill);
+            pst2 = connection.prepareStatement(sqlBillProduct);
+            pst.setInt(1, bill.getId());
+            Date date = new Date();
+            pst.setLong(2, bill.getTime());
+            pst.setString(3, bill.getType().name());
+            pst.setInt(4, (int) bill.getValue());
+            pst.setString(5, String.valueOf(bill.getEmployee().getId()));
+            pst.setString(6, bill.getCustomer().getPhone());
+
+            ResultSet rs = pst.executeQuery();
+            System.out.println(rs);
+            int billId = rs.getInt("id");
+            pst2.setInt(1, billId);
+            Map<Product, Integer> maps = bill.getProductMaps();
+            Set<Product> products = maps.keySet();
+            for (Product product : products){
+                pst2.setString(2, product.getCode());
+                pst2.setInt(3, maps.get(product));
+                pst2.execute();
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } 
+    }
+    
+    //finance
     public static long getFinance(long time) {
         Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst = null;
@@ -1001,7 +1004,7 @@ public class DB {
         Connection connection = JDBCConnection.getJDBCConnection();
         PreparedStatement pst = null;
         long time = new Date().getTime();
-        String sql = "INSERT INTO finance (finance, time, description) "
+        String sql = "INSERT INTO finance (total_value, time, description) "
             + "VALUE(?,?,?)";
         try {
             pst = connection.prepareStatement(sql);

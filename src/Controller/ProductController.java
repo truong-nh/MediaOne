@@ -7,6 +7,7 @@ package Controller;
 import Product.Book;
 import Product.DiscMovie;
 import Product.DiscMusic;
+import Product.Product;
 import database.DB;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -195,7 +196,8 @@ public class ProductController {
                 System.out.println("Không đủ sản phẩm");
             }
     }
-
+    
+    
         
     
     //DiscMovie
@@ -280,5 +282,28 @@ public class ProductController {
             else{
                 System.out.println("Không đủ sản phẩm");
             }
+    }
+    
+    //getProductByCode
+    
+    public Product getProductByCode(String code){
+       if(this.getBookByCode(code)!= null){
+        return  this.getBookByCode(code);
+       }
+       else{
+           if(this.getDiscMovieByCode(code)!= null){
+        return  this.getDiscMovieByCode(code);
+       }
+       else{
+               if(this.getDiscMusicByCode(code)!= null){
+        return  this.getDiscMovieByCode(code);
+       }
+       else{
+                   return null;
+               }
+           }
+         
+       }
+    
     }
 }
