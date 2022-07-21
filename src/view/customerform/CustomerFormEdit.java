@@ -7,6 +7,7 @@ package view.customerform;
 import Controller.CustomerController;
 import Controller.ProductController;
 import javax.swing.JOptionPane;
+import person.Customer;
 import person.Employee;
 import view.EmployeeHome;
 import view.ManagerHome;
@@ -15,16 +16,17 @@ import view.ManagerHome;
  *
  * @author Admin
  */
-public class CustomerForm extends javax.swing.JFrame {
+public class CustomerFormEdit extends javax.swing.JFrame {
     CustomerController customerController;
     /**
      * Creates new form CustomerForm
      */
-    public CustomerForm(String phone,Employee employee ) {
+    public CustomerFormEdit(Customer customer,Employee employee ) {
         initComponents();
         customerController = new CustomerController(employee);
-        phoneJTextField.setText(phone);
-        phoneJTextField.setEditable(false);
+        phoneJTextField.setText(customer.getPhone());
+        nameJTextField.setText(customer.getName());
+        bornJTextField.setText(String.valueOf(customer.getBorn()));
     }
 
     /**
@@ -108,7 +110,7 @@ public class CustomerForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Thêm mới khách hàng");
+        jButton1.setText("Chỉnh sửa");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -120,7 +122,7 @@ public class CustomerForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(275, Short.MAX_VALUE)
+                .addContainerGap(341, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -4,6 +4,7 @@
  */
 package view;
 
+import Controller.CustomerController;
 import view.bookform.BookFormEdit;
 import view.bookform.BookForm;
 import view.clock.ClockThread;
@@ -17,7 +18,9 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import person.Customer;
 import person.Employee;
+import view.customerform.CustomerForm;
 import view.discMovieForm.DiscMovieForm;
 import view.discMovieForm.DiscMovieFormEdit;
 import view.discmusicform.DiscMusicForm;
@@ -29,6 +32,7 @@ import view.discmusicform.DiscMusicFormEdit;
  */
 public class EmployeeHome extends javax.swing.JFrame {
     ProductController productController;
+    CustomerController customerController;
     Employee employee;
     /**
      * Creates new form EmployeeHome
@@ -132,7 +136,28 @@ public class EmployeeHome extends javax.swing.JFrame {
         defaultTableModel3.addRow(new Object[]{discMovie.getId(),discMovie.getCode(),discMovie.getName(),discMovie.getPurchasePrice(),discMovie.getSalePrice(),discMovie.getRemaining(),formatter.format(discMovie.getAddDate()),formatter.format(discMovie.getUpdateDate()),discMovie.getUpdater().getId(),
             discMovie.getProductPlacement(),discMovie.getGenre(),discMovie.getLength(),discMovie.getYear(),discMovie.getActor(),discMovie.getDirector() });
         }
+       
          
+          customerController= new CustomerController(employee);
+        DefaultTableModel defaultTableModel5;
+        defaultTableModel5 = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        } ;
+        customerJTable1.setModel(defaultTableModel5);
+       
+        defaultTableModel5.addColumn("ID");
+        defaultTableModel5.addColumn("Name");
+        defaultTableModel5.addColumn("Born");
+        defaultTableModel5.addColumn("Phone");
+        defaultTableModel5.addColumn("Point");
+          List<Customer> customers= customerController.getListCustomer();
+          for(Customer customer: customers){
+           defaultTableModel5.addRow(new Object[]{customer.getId(),customer.getName(),customer.getBorn(),customer.getPhone(),customer.getPoint() });
+        
+          }
         
     }
     /**
@@ -191,9 +216,11 @@ public class EmployeeHome extends javax.swing.JFrame {
         newOrderJButton = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        phonejTextField = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        customerJTable1 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -288,8 +315,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(bookjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(bookjScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Sách", bookJPanel);
@@ -376,8 +402,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
-                .addComponent(dircMusicjScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(dircMusicjScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Đĩa nhạc", discMusicJpanel);
@@ -455,17 +480,19 @@ public class EmployeeHome extends javax.swing.JFrame {
         discMovieJPanel.setLayout(discMovieJPanelLayout);
         discMovieJPanelLayout.setHorizontalGroup(
             discMovieJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(discMoviejScrollPane4)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, discMovieJPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(discMoviejScrollPane4)
+                .addContainerGap())
         );
         discMovieJPanelLayout.setVerticalGroup(
             discMovieJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(discMovieJPanelLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55)
-                .addComponent(discMoviejScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(33, 33, 33)
+                .addComponent(discMoviejScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Đĩa phim", discMovieJPanel);
@@ -607,30 +634,53 @@ public class EmployeeHome extends javax.swing.JFrame {
         homeJTablePane.addTab("Giỏ Hàng", GioHang);
 
         jButton3.setText("Tạo mới khách hàng");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số điện thoại", "Họ và tên" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
         jButton6.setText("Tra thông tin");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Số điện thoại :");
+
+        customerJTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        customerJTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane2.setViewportView(customerJTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jButton6)
                 .addGap(76, 76, 76)
                 .addComponent(jButton3)
                 .addContainerGap(945, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,10 +688,11 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
-                .addContainerGap(432, Short.MAX_VALUE))
+                    .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6)
+                    .addComponent(jLabel1))
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
         );
 
         homeJTablePane.addTab("Khách hàng", jPanel1);
@@ -673,8 +724,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(timeJLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(homeJTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(homeJTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 383, Short.MAX_VALUE))
         );
 
         pack();
@@ -802,10 +852,6 @@ public class EmployeeHome extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_newOrderJButtonActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void homeJTablePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeJTablePaneMouseClicked
         // TODO add your handling code here:
@@ -1005,6 +1051,53 @@ public class EmployeeHome extends javax.swing.JFrame {
         }  
     }//GEN-LAST:event_findJButton3ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+         customerController= new CustomerController(employee);
+         
+        DefaultTableModel defaultTableModel;
+        defaultTableModel= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        } ;
+        customerJTable1.setModel(defaultTableModel);
+
+        defaultTableModel.addColumn("ID");
+        defaultTableModel.addColumn("Name");
+        defaultTableModel.addColumn("Born");
+        defaultTableModel.addColumn("Phone");
+        defaultTableModel.addColumn("Point");
+        
+        try {
+            Customer customer = customerController.getCustomerByPhone(phonejTextField.getText());
+        defaultTableModel.addRow(new Object[]{customer.getId(),customer.getName(),customer.getBorn(),customer.getPhone(),customer.getId()  });
+        
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Không tồn tại số điện thoại:  "+phonejTextField.getText());
+        }
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        customerController= new CustomerController(employee);
+        if (phonejTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập số điện thoại khách hàng cần thêm");
+        }
+        else{
+          if (customerController.getCustomerByPhone(phonejTextField.getText())!= null ){
+              JOptionPane.showMessageDialog(null, "Số điện thoại đã tồn tại \n Vui lòng nhập số điện thoại khác hoặc lựa chọn chức năng chỉnh sửa");
+          }
+        else{
+        new CustomerForm(phonejTextField.getText(),employee).setVisible(true);
+        this.setVisible(false);
+        }   
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1049,6 +1142,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JTextField codeDiscMusicJTextField2;
     private javax.swing.JTextField codeJTextField;
     private javax.swing.JTextField codediscMovieJTextField3;
+    private javax.swing.JTable customerJTable1;
     private javax.swing.JButton deleteOrderJButton;
     private javax.swing.JScrollPane dircMusicjScrollPane3;
     private javax.swing.JPanel discMovieJPanel;
@@ -1071,7 +1165,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1082,7 +1176,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTable listBookTable;
     private javax.swing.JTable listDiscMovieJTable;
@@ -1091,6 +1185,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JTextField orderAmoutJTextField;
     private javax.swing.JTable orderJTable;
     private javax.swing.JTextField ordercodeJTextField;
+    private javax.swing.JTextField phonejTextField;
     private javax.swing.JLabel timeJLabel;
     // End of variables declaration//GEN-END:variables
 }
