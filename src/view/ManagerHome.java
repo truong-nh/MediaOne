@@ -27,6 +27,7 @@ import view.discMovieForm.DiscMovieFormEdit;
 import view.discmusicform.DiscMusicForm;
 import view.discmusicform.DiscMusicFormEdit;
 import view.employeeform.EmployeeFormEdit;
+import view.finance.FinanceForm;
 
 /**
  *
@@ -248,13 +249,8 @@ public class ManagerHome extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         customerJTable1 = new javax.swing.JTable();
-        financeJPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -711,47 +707,14 @@ public class ManagerHome extends javax.swing.JFrame {
 
         homeJTablePane.addTab("Quản lý khách hàng ", customerjPanel);
 
-        jLabel1.setText("Báo cáo tài chính");
-
-        jLabel2.setText("Ngày bắt đầu");
-
-        jLabel3.setText("Ngày kết thúc");
-
-        javax.swing.GroupLayout financeJPanelLayout = new javax.swing.GroupLayout(financeJPanel);
-        financeJPanel.setLayout(financeJPanelLayout);
-        financeJPanelLayout.setHorizontalGroup(
-            financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(financeJPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(financeJPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1028, Short.MAX_VALUE))
-        );
-        financeJPanelLayout.setVerticalGroup(
-            financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(financeJPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(financeJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(439, Short.MAX_VALUE))
-        );
-
-        homeJTablePane.addTab("quản lý tài chính", financeJPanel);
-
         jLabel6.setText("Nhân viên:");
+
+        jButton1.setText("báo cáo tài chính");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -762,29 +725,34 @@ public class ManagerHome extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(468, 468, 468)
-                        .addComponent(timeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(106, 106, 106)
+                        .addComponent(timeJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(63, 63, 63)
+                        .addComponent(jButton1))
                     .addComponent(homeJTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(timeJLabel)
-                        .addGap(14, 14, 14)))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(timeJLabel)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(homeJTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new FinanceForm(employee).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void homeJTablePaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeJTablePaneMouseClicked
         // TODO add your handling code here:
@@ -830,7 +798,6 @@ public class ManagerHome extends javax.swing.JFrame {
         else{
             JOptionPane.showMessageDialog(null, "Mã nhân viên chưa tồn tại");
         }
-
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void findJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findJButton1ActionPerformed
@@ -862,7 +829,6 @@ public class ManagerHome extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Nhap lai ma nhan vien");
         }
-
     }//GEN-LAST:event_findJButton1ActionPerformed
 
     private void userNameSearchJTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameSearchJTextField1ActionPerformed
@@ -1099,7 +1065,6 @@ public class ManagerHome extends javax.swing.JFrame {
         }
 
         }
-
     }//GEN-LAST:event_findJButtonActionPerformed
 
     private void codeJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeJTextFieldActionPerformed
@@ -1200,12 +1165,12 @@ public class ManagerHome extends javax.swing.JFrame {
     private javax.swing.JPanel discMusicJpanel;
     private javax.swing.JPanel discMusicjPanel;
     private javax.swing.JPanel employeeJPanel;
-    private javax.swing.JPanel financeJPanel;
     private javax.swing.JButton findJButton;
     private javax.swing.JButton findJButton1;
     private javax.swing.JButton findJButton2;
     private javax.swing.JButton findJButton3;
     private javax.swing.JTabbedPane homeJTablePane;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
@@ -1217,9 +1182,6 @@ public class ManagerHome extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel4;
@@ -1228,8 +1190,6 @@ public class ManagerHome extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTable listBookTable;
     private javax.swing.JTable listDiscMovieJTable;
     private javax.swing.JTable listDiscMusicTable1;

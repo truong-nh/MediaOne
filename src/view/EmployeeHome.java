@@ -219,7 +219,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         codediscMovieJTextField3 = new javax.swing.JTextField();
         findJButton3 = new javax.swing.JButton();
         discMovieJcombobox1 = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
+        customerjPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         phonejTextField = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
@@ -549,11 +549,11 @@ public class EmployeeHome extends javax.swing.JFrame {
         customerJTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane2.setViewportView(customerJTable1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout customerjPanel1Layout = new javax.swing.GroupLayout(customerjPanel1);
+        customerjPanel1.setLayout(customerjPanel1Layout);
+        customerjPanel1Layout.setHorizontalGroup(
+            customerjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerjPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -563,16 +563,16 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addGap(76, 76, 76)
                 .addComponent(jButton3)
                 .addContainerGap(959, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(customerjPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        customerjPanel1Layout.setVerticalGroup(
+            customerjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerjPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(customerjPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6)
@@ -581,7 +581,7 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE))
         );
 
-        homeJTablePane.addTab("Khách hàng", jPanel1);
+        homeJTablePane.addTab("Khách hàng", customerjPanel1);
 
         jLabel2.setText("Số điện thoại khách hàng");
 
@@ -1170,6 +1170,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JTextField codeJTextField;
     private javax.swing.JTextField codediscMovieJTextField3;
     private javax.swing.JTable customerJTable1;
+    private javax.swing.JPanel customerjPanel1;
     private javax.swing.JButton deleteOrderJButton;
     private javax.swing.JScrollPane dircMusicjScrollPane3;
     private javax.swing.JPanel discMovieJPanel;
@@ -1199,7 +1200,6 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;

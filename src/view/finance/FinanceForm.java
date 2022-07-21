@@ -5,18 +5,21 @@
 package view.finance;
 
 import java.text.SimpleDateFormat;
+import person.Employee;
+import view.ManagerHome;
 
 /**
  *
  * @author Admin
  */
 public class FinanceForm extends javax.swing.JFrame {
-
+    Employee employee;
     /**
      * Creates new form FinanceForm
      */
-    public FinanceForm() {
+    public FinanceForm(Employee employee) {
         initComponents();
+        this.employee= employee;
     }
 
     /**
@@ -36,6 +39,9 @@ public class FinanceForm extends javax.swing.JFrame {
         fianaceJTable1 = new javax.swing.JTable();
         startJDateChooser1 = new com.toedter.calendar.JDateChooser();
         endJDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,7 +67,13 @@ public class FinanceForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(fianaceJTable1);
 
-        jButton2.setText("test day");
+        jLabel4.setText("Tổng tiền mua:");
+
+        jLabel5.setText("Tổng tiền bán:");
+
+        jLabel6.setText("Tổng chi phí khác :");
+
+        jButton2.setText("Trở về");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -93,8 +105,13 @@ public class FinanceForm extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(19, 19, 19))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(212, 212, 212)
+                .addContainerGap()
                 .addComponent(jButton2)
+                .addGap(132, 132, 132)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -110,11 +127,17 @@ public class FinanceForm extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addComponent(startJDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(endJDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addGap(1, 1, 1)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jButton2))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,10 +145,8 @@ public class FinanceForm extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String startDay= formatter.format(startJDateChooser1.getDate());
-        String endDay =  formatter.format(endJDateChooser2.getDate());
-        System.out.println("Từ ngày  "+startDay+" đến ngày "+endDay);
+        new ManagerHome(employee).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -156,13 +177,13 @@ public class FinanceForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FinanceForm().setVisible(true);
-                
-                
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new FinanceForm(this.).setVisible(true);
+//                
+//                
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -173,6 +194,9 @@ public class FinanceForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser startJDateChooser1;
     // End of variables declaration//GEN-END:variables
