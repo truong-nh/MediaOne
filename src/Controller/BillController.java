@@ -110,19 +110,23 @@ public class BillController {
      * @param bill
      * @return
      */
-    public boolean pay(Bill bill){
+    public boolean pay(Bill bill, int cost){
         long moneyEnable = DB.getFinance(new Date().getTime());
         bill.setTime(new Date().getTime());
         DB.saveBill(bill);
-        if (BillType.BUYING.equals(bill.getType())){
-            if (moneyEnable > bill.getValue()) {
-                DB.saveFinance(moneyEnable - bill.getValue(), bill, 0);
+        if (bill != null) {
+            if (BillType.BUYING.equals(bill.getType())) {
+                if (moneyEnable > bill.getValue()) {
+                    DB.saveFinance(moneyEnable - bill.getValue(), bill, cost);
+                } else {
+                    System.out.println("Your balance no enough!");
+                    return false;
+                }
             } else {
-                System.out.println("Your balance no enough!");
-                return false;
+                DB.saveFinance(moneyEnable + bill.getValue(), bill, cost);
             }
         } else {
-            DB.saveFinance(moneyEnable + bill.getValue(), bill, 0);
+            DB.saveFinance(0, null, cost);
         }
         updateProducts(bill);
         return true;

@@ -1074,12 +1074,18 @@ public class DB {
             + "VALUE(?,?,?)";
         try {
             pst = connection.prepareStatement(sql);
-            pst.setLong(1, totalValue);
-            pst.setLong(2, time);
-
             if (bill == null){
-                pst.setString(3, String.valueOf(cost).concat("_OTHER"));
+                long moneyAvai = DB.getFinance(new Date().getTime());
+                if (moneyAvai > cost) {
+                    pst.setLong(1, moneyAvai - cost);
+                    pst.setLong(2, time);
+                    pst.setString(3, String.valueOf(cost).concat("_OTHER"));
+                } else {
+                    System.out.println("Total money not enough!");
+                }
             } else {
+                pst.setLong(1, totalValue);
+                pst.setLong(2, time);
                 pst.setString(3, String.valueOf(bill.getValue()).concat("_")
                     .concat(bill.getType().name()));
             }

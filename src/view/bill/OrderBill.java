@@ -373,7 +373,7 @@ public class OrderBill extends javax.swing.JFrame {
         
         billController.addItemToBill(bill, productMaps);
         billController.calculateBill(bill);
-        billController.pay(bill);
+        billController.pay(bill, 0);
         
         this.setVisible(false);
         } catch (Exception e) {
