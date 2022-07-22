@@ -66,9 +66,17 @@ public class test {
               Book book11= productController.getBookByCode("b6");
               Employee employee1= employeeController.getEmployeeByUserName("truong");
               Bill bill = new Bill();
-              Map<Product, Integer> productMaps = new LinkedHashMap<Product, Integer>() ;
-              productMaps.put(book11, 1);
-              bill= billController.addBill(customer, employee, BillType.BUYING);
+             // Map<Product, Integer> productMaps = new LinkedHashMap<Product, Integer>() ;
+             // productMaps.put(book11, 1);
+            //  bill= billController.addBill(customer, employee, BillType.BUYING);
+//             for(DiscMusic discMusic: productController.getListDiscMusic()){
+//                 System.out.println(discMusic.getCode());
+//             }
+              System.out.println(productController.getBookByCode("b1"));
+              System.out.println(productController.getDiscMovieByCode("f1"));
+              System.out.println(productController.getDiscMusicByCode("m1"));
+              System.out.println(productController.getProductByCode("m2").getCode());
+              
 }
     
 }

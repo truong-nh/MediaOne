@@ -72,6 +72,10 @@ public class FinanceForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(fianaceJTable1);
 
+        startJDateChooser1.setDateFormatString("yyyy-MM-dd");
+
+        endJDateChooser2.setDateFormatString("yyyy-MM-dd");
+
         jLabel4.setText("Tổng tiền mua:");
 
         jLabel5.setText("Tổng tiền bán:");

@@ -785,7 +785,7 @@ public class EmployeeHome extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
         }
         else{
-          if (productController.getBookByCode(codeJTextField.getText())!= null ){
+          if (productController.getProductByCode(codeJTextField.getText())!= null ){
               JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
           }
         else{
@@ -911,7 +911,7 @@ public class EmployeeHome extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
         }
         else{
-          if (productController.getDiscMusicByCode(codeDiscMusicJTextField2.getText())!= null ){
+          if (productController.getProductByCode(codeDiscMusicJTextField2.getText())!= null ){
               JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
           }
         else{
@@ -1012,7 +1012,7 @@ public class EmployeeHome extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập mã sản phẩm bạn muốn thêm");
         }
         else{
-          if (productController.getDiscMovieByCode(codeDiscMusicJTextField2.getText())!= null ){
+          if (productController.getProductByCode(codeDiscMusicJTextField2.getText())!= null ){
               JOptionPane.showMessageDialog(null, "Mã sản phẩm đã tồn tại \n Vui  lòng nhập mã sản phẩm khác hoặc lựa chọn chức năng chỉnh sửa");
           }
         else{

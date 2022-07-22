@@ -71,7 +71,7 @@ public class test {
               Bill bill = new Bill();
               Map<Product, Integer> productMaps = new LinkedHashMap<Product, Integer>() ;
               productMaps.put(book11, 1);
-              bill= billController.addBill(customer, employee, BillType.BUYING);
+      //        bill= billController.addBill(customer, employee, BillType.BUYING);
      //   DB.saveFinance(11112, bill, 0);
         
     } 

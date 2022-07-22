@@ -166,6 +166,8 @@ public class ProductController {
        }
         return null;
     }
+
+    
      
     public void updateDiscMusic( String code , String purcharPrice , String salePrice ,
             String remaining,String productPlacement, String genre ,String singer){
@@ -295,8 +297,8 @@ public class ProductController {
         return  this.getDiscMovieByCode(code);
        }
        else{
-               if(this.getDiscMusicByCode(code)!= null){
-        return  this.getDiscMovieByCode(code);
+         if(this.getDiscMusicByCode(code)!= null){
+        return  this.getDiscMusicByCode(code);
        }
        else{
                    return null;

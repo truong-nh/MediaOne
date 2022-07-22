@@ -745,10 +745,6 @@ public class DB {
         }
     }
     
-    
-    
-    
-    
     //customer
     public static List<Customer> getListCustomers(){
      List<Customer> customers = new ArrayList<>();
@@ -868,7 +864,51 @@ public class DB {
             }
         } 
     }
-     
+    
+    public static Customer getCustomerByPhone(String phone){
+         Connection connection = JDBCConnection.getJDBCConnection();
+        PreparedStatement pst = null;
+      
+        String sql = "SELECT * FROM customer WHERE phone = ?";
+
+        try {
+            pst = connection.prepareStatement(sql);
+            pst.setString(1, phone);
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()){
+            Customer customer = new Customer();
+            
+            customer.setId(rs.getInt("ID")) ;
+            customer.setName(rs.getString("Name"));
+            customer.setBorn(rs.getInt("born"));
+            customer.setPhone(rs.getString("phone"));
+            customer.setPoint(rs.getInt("point"));
+
+
+            return customer;
+        }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
     ///bill
     public static List<Bill> getListBills(){
       List<Bill> bills = new ArrayList<>();
@@ -886,12 +926,13 @@ public class DB {
             Employee creator = DB.getEmployee(rs.getString("creator"));
 
 
-            bill.setTime(rs.getTimestamp("date").getTime()); ;
+            bill.setTime(rs.getTimestamp("date").getTime()); 
             bill.setType(BillType.valueOf(rs.getString("type")));
             bill.setId(rs.getInt("id"));
             bill.setValue(rs.getInt("value"));
             bill.setEmployee(creator);
-//            bill.setCustomer(rs.getString("note"));
+            Customer customer=DB.getCustomerByPhone(rs.getString("phone"));
+            bill.setCustomer(customer);
 
             bills.add(bill);
         }
