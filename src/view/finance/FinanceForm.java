@@ -198,7 +198,7 @@ public class FinanceForm extends javax.swing.JFrame {
               BusinessReport businessReport =financeController.getBusinessReport(formDate, toDate);
               totalOtherjLabel6.setText("Tổng chi phí khác : "+businessReport.getTotalOther());
               totalSelljLabel5.setText("Tổng tiền bán: "+businessReport.getTotalSell());
-              totalPurchasejLabel4.setText("Tổng tiền mua"+businessReport.getTotalPurchase());
+              totalPurchasejLabel4.setText("Tổng tiền mua: "+businessReport.getTotalPurchase());
           }
             
             

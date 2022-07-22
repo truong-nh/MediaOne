@@ -31,14 +31,15 @@ public class OrderBill extends javax.swing.JFrame {
     /**
      * Creates new form OrderBill
      */
-    public OrderBill(Employee employee) {
+    public OrderBill(Employee employee,String phone) {
         initComponents();
         this.employee= employee;
         billController= new BillController(employee);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         nhanVienJLabel1.setText("Nhân viên: " + employee.getAccount().getUserName() );
         Bill bill= new Bill();
-        
+        phoneCustomerOrderJTextField2.setText(phone);
+        phoneCustomerOrderJTextField2.setEnabled(false);
         DefaultTableModel defaultTableModel;
      defaultTableModel= new DefaultTableModel(){
             @Override
