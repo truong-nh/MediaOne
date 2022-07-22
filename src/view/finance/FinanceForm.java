@@ -4,7 +4,15 @@
  */
 package view.finance;
 
+import Controller.FinanceController;
+import bill.BusinessReport;
+import bill.FinanceReport;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 import person.Employee;
 import view.ManagerHome;
 
@@ -14,6 +22,7 @@ import view.ManagerHome;
  */
 public class FinanceForm extends javax.swing.JFrame {
     Employee employee;
+    FinanceController financeController;
     /**
      * Creates new form FinanceForm
      */
@@ -39,9 +48,9 @@ public class FinanceForm extends javax.swing.JFrame {
         fianaceJTable1 = new javax.swing.JTable();
         startJDateChooser1 = new com.toedter.calendar.JDateChooser();
         endJDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        totalPurchasejLabel4 = new javax.swing.JLabel();
+        totalSelljLabel5 = new javax.swing.JLabel();
+        totalOtherjLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,11 +85,11 @@ public class FinanceForm extends javax.swing.JFrame {
 
         endJDateChooser2.setDateFormatString("yyyy-MM-dd");
 
-        jLabel4.setText("Tổng tiền mua:");
+        totalPurchasejLabel4.setText("Tổng tiền mua:");
 
-        jLabel5.setText("Tổng tiền bán:");
+        totalSelljLabel5.setText("Tổng tiền bán:");
 
-        jLabel6.setText("Tổng chi phí khác :");
+        totalOtherjLabel6.setText("Tổng chi phí khác :");
 
         jButton2.setText("Trở về");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -118,9 +127,9 @@ public class FinanceForm extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addGap(132, 132, 132)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalOtherjLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                    .addComponent(totalSelljLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(totalPurchasejLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,14 +146,14 @@ public class FinanceForm extends javax.swing.JFrame {
                     .addComponent(startJDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(endJDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76)
+                .addComponent(totalPurchasejLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(totalSelljLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(totalOtherjLabel6)
                     .addComponent(jButton2))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
@@ -160,9 +169,43 @@ public class FinanceForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        financeController = new FinanceController(employee);
         SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String startDate = formatter.format(startJDateChooser1.getDate());
-        String endDate = formatter.format(endJDateChooser2.getDate());
+        String formDate = formatter.format(startJDateChooser1.getDate());
+        String toDate = formatter.format(endJDateChooser2.getDate());
+        try {
+            
+            
+        DefaultTableModel defaultTableModel;
+        defaultTableModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        } ;
+        
+        
+        fianaceJTable1.setModel(defaultTableModel);
+       
+        defaultTableModel.addColumn("Ngày");
+        defaultTableModel.addColumn("Tổng tiền khả dụng");
+        defaultTableModel.addColumn("Tổng tiền hàng");
+        defaultTableModel.addColumn("Tổng");
+          List<FinanceReport> financeReports= financeController.getReport(formDate, toDate);
+          for(FinanceReport financeReport: financeReports){
+           defaultTableModel.addRow(new Object[]{financeReport.getDate(),financeReport.getMoney(),financeReport.getProductValue(),financeReport.getTotalProperties() });
+              System.out.println(financeReport.getDate());
+              BusinessReport businessReport =financeController.getBusinessReport(formDate, toDate);
+              totalOtherjLabel6.setText("Tổng chi phí khác : "+businessReport.getTotalOther());
+              totalSelljLabel5.setText("Tổng tiền bán: "+businessReport.getTotalSell());
+              totalPurchasejLabel4.setText("Tổng tiền mua"+businessReport.getTotalPurchase());
+          }
+            
+            
+            
+        } catch (ParseException ex) {
+            System.out.println("lỗi");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -210,10 +253,10 @@ public class FinanceForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private com.toedter.calendar.JDateChooser startJDateChooser1;
+    private javax.swing.JLabel totalOtherjLabel6;
+    private javax.swing.JLabel totalPurchasejLabel4;
+    private javax.swing.JLabel totalSelljLabel5;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import mediaone.MediaOne;
+import person.Employee;
 import util.DateUtil;
 
 /**
@@ -20,7 +21,20 @@ import util.DateUtil;
  */
 public class FinanceController {
 
+  Employee employee;
 
+    public FinanceController(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+    
   public List<FinanceReport> getReport(String fromDate, String toDate) throws ParseException {
     List<FinanceReport> result = new ArrayList<>();
     List<String> listDateRequired = getListDateRequired(fromDate, toDate);
@@ -31,7 +45,7 @@ public class FinanceController {
       long time = DateUtil.sdf.parse(date).getTime();
       long finance = DB.getFinance(time);
       report.setMoney(finance);
-
+      report.setDate(date);
       BusinessReport businessReport = getBusinessReport(date, today);
       report.setProductValue(totalProductValue + businessReport.getTotalPurchase() -
           businessReport.getTotalSell() + businessReport.getTotalOther());
@@ -39,7 +53,7 @@ public class FinanceController {
       result.add(report);
     }
     return result;
-  }
+  } //table
 
   public long getTotalProductValues(){
     return getTotalBookValue() + getTotalDiscMovieValue() + getTotalDiscMusicValue();
@@ -112,5 +126,6 @@ public class FinanceController {
     long fromTime = DateUtil.sdf.parse(fromDate).getTime();
     long endTime = DateUtil.atEndOfDay(DateUtil.sdf.parse(toDate)).getTime();
     return DB.getBusinessReport(fromTime, endTime);
-  }
+  } 
+  
 }
