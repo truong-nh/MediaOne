@@ -931,8 +931,8 @@ public class DB {
             bill.setId(rs.getInt("id"));
             bill.setValue(rs.getInt("value"));
             bill.setEmployee(creator);
-            Customer customer=DB.getCustomerByPhone(rs.getString("phone"));
-            bill.setCustomer(customer);
+          //  Customer customer=DB.getCustomerByPhone(rs.getString("phone"));
+          //  bill.setCustomer(customer);
 
             bills.add(bill);
         }
