@@ -45,6 +45,8 @@ public class EmployeeHome extends javax.swing.JFrame {
         initComponents();
         
     }
+//      SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+      SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd");
     public EmployeeHome(Employee employee)  {
         productController= new ProductController(employee);
         this.employee=employee;
@@ -226,6 +228,7 @@ public class EmployeeHome extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         customerJTable1 = new javax.swing.JTable();
+        jButton12 = new javax.swing.JButton();
         GioHang = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         phoneCustomerOrderJTextField2 = new javax.swing.JTextField();
@@ -549,6 +552,13 @@ public class EmployeeHome extends javax.swing.JFrame {
         customerJTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane2.setViewportView(customerJTable1);
 
+        jButton12.setText("Làm mới dữ liệu");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout customerjPanel1Layout = new javax.swing.GroupLayout(customerjPanel1);
         customerjPanel1.setLayout(customerjPanel1Layout);
         customerjPanel1Layout.setHorizontalGroup(
@@ -562,7 +572,9 @@ public class EmployeeHome extends javax.swing.JFrame {
                 .addComponent(jButton6)
                 .addGap(76, 76, 76)
                 .addComponent(jButton3)
-                .addContainerGap(959, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(jButton12)
+                .addContainerGap(810, Short.MAX_VALUE))
             .addGroup(customerjPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -576,7 +588,8 @@ public class EmployeeHome extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(phonejTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jButton12))
                 .addGap(44, 44, 44)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE))
         );
@@ -760,7 +773,7 @@ public class EmployeeHome extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+      
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         if ( String.valueOf(bookJComboBox2.getSelectedItem()).equals("Tên sản phẩm") ){
@@ -1128,6 +1141,32 @@ public class EmployeeHome extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        customerController= new CustomerController(employee);
+        DefaultTableModel defaultTableModel5;
+        defaultTableModel5 = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        } ;
+        
+        
+        customerJTable1.setModel(defaultTableModel5);
+       
+        defaultTableModel5.addColumn("ID");
+        defaultTableModel5.addColumn("Name");
+        defaultTableModel5.addColumn("Born");
+        defaultTableModel5.addColumn("Phone");
+        defaultTableModel5.addColumn("Point");
+          List<Customer> customers= customerController.getListCustomer();
+          for(Customer customer: customers){
+           defaultTableModel5.addRow(new Object[]{customer.getId(),customer.getName(),customer.getBorn(),customer.getPhone(),customer.getPoint() });
+        
+          }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1187,6 +1226,7 @@ public class EmployeeHome extends javax.swing.JFrame {
     private javax.swing.JTabbedPane homeJTablePane;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
