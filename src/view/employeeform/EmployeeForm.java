@@ -20,10 +20,11 @@ public class EmployeeForm extends javax.swing.JFrame {
     /**
      * Creates new form EmployeeForm
      */
-    public EmployeeForm(Employee employee) {
+    public EmployeeForm(Employee employee,String phone) {
         initComponents();
         employeeController = new EmployeeController(employee);
-    
+        usernameJTextField.setText(phone);
+        usernameJTextField.setEditable(false);
         
     }    
         
